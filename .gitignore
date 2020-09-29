@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2020 Carles Fernandez-Prades <carles.fernandez(at)cttc.es>
+*~
+.DS_Store
+jethro/
+krogoth/
+morty/
+pyro/
+rocko/
+sumo/
+thud/
+warrior/
+zeus/
+dunfell/
+gatesgarth/
+master/
+output/
