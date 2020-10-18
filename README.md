@@ -56,7 +56,7 @@ Usage:
 ./geniux-builder.sh [version] [manifest] [machine]
 
 Options:
- version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell. Default: warrior
+ version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell. Default: thud
            Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr
  manifest  Geniux version manifest: 20.09, ..., latest. Default: latest
            Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags
