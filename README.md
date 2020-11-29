@@ -58,7 +58,7 @@ Usage:
 Options:
  version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell. Default: thud
            Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr
- manifest  Geniux version manifest: 20.09, ..., latest. Default: latest
+ manifest  Geniux version manifest: 20.11, ..., latest. Default: latest
            Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags
  machine   Specify your (list of) MACHINE here. By default, zedboard-zynq7 and raspberrypi3 are built.
 
