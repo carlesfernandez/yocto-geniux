@@ -123,6 +123,13 @@ Examples of usage:
   $ ./geniux-builder.sh warrior 20.09 raspberrypi3
   ```
 
+- Build Geniux release `rocko`, with manifest date `latest`, for machines
+  `zedboard-zynq7` and `zcu102-zynqmp`:
+
+  ```
+  $ ./geniux-builder.sh rocko latest "zedboard-zynq7 zcu102-zynqmp"
+  ```
+
 If you want to have more detailed control of the whole process, or you are
 interested on further development (making changes to the Yocto layers, adding
 new features or recipes, fixing bugs, etc.), then you can skip the usage of the
