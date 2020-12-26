@@ -72,10 +72,11 @@ fi
 
 BASEDIR=$PWD
 
-mkdir -p $GENIUX_VERSION && cd $GENIUX_VERSION
+mkdir -p $GENIUX_VERSION
 
 for machine in $ListOfMachines; do
     echo "Building Geniux $GENIUX_VERSION-$GENIUX_MANIFEST_DATE for machine $machine..."
+    cd $BASEDIR/$GENIUX_VERSION
     mkdir -p $GENIUX_VERSION-$machine && cd $GENIUX_VERSION-$machine && cp ../../Dockerfile ./
     docker build --no-cache \
       --build-arg "version=$GENIUX_VERSION" \
