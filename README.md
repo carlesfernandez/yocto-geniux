@@ -56,7 +56,7 @@ Usage:
 ./geniux-builder.sh [version] [manifest] [machine]
 
 Options:
- version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell. Default: thud
+ version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth. Default: warrior
            Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr
  manifest  Geniux version manifest: 20.11, ..., latest. Default: latest
            Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags
@@ -172,7 +172,7 @@ If the `--build-arg` parameters are not specified, the default values are
   [Yocto Project Releases](https://wiki.yoctoproject.org/wiki/Releases),
   starting from Rocko (Yocto version 2.4):
 
-  - `rocko`, `sumo`, `thud`, `warrior`, `zeus`, `dunfell`.
+  - `rocko`, `sumo`, `thud`, `warrior`, `zeus`, `dunfell`, `gatesgarth`.
 
 - The possible options for `manifest_date` are those of the tags found at the
   https://github.com/carlesfernandez/oe-gnss-sdr-manifest repository. If not
