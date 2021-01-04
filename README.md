@@ -4,7 +4,7 @@ SPDX-License-Identifier: Apache-2.0
 )
 
 [comment]: # (
-SPDX-FileCopyrightText: 2020 Carles Fernandez-Prades <carles.fernandez@cttc.es>
+SPDX-FileCopyrightText: 2020-2021 Carles Fernandez-Prades <carles.fernandez@cttc.es>
 )
 <!-- prettier-ignore-end -->
 
@@ -298,3 +298,10 @@ $ mv ./tmp-glibc/deploy/sdk /home/geniux/yocto/output/
 Now, when doing `exit` from the container, the build artifacts will be at the
 `./output` folder you created in your machine, so _outside_ the container. The
 container itself will be erased at exit.
+
+## Copyright and License
+
+Copyright: &copy; 2016-2021 Carles Fern&aacute;ndez-Prades. All rights reserved.
+
+The content of this repository is released under the [Apache 2.0](./LICENSE)
+license.
