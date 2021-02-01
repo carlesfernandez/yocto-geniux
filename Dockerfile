@@ -84,6 +84,7 @@ RUN if [ "$manifest_date" = "latest" ] ; then \
 RUN repo sync
 ENV MACHINE=$MACHINE
 ENV TEMPLATECONF=$BUILD_INPUT_DIR/meta-gnss-sdr/conf
+RUN echo "/bin/echo -e \"Welcome to the Yocto-Geniux container. To setup the building environment, type:\n  source ./oe-core/oe-init-build-env ./build ./bitbake\n\"" >> /home/$USER_NAME/.bashrc
 
 CMD if [ "$host_git" = "1001" ]; then \
     source ./oe-core/oe-init-build-env ./build ./bitbake && \
