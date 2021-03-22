@@ -84,7 +84,7 @@ RUN if [ "$manifest_date" = "latest" ] ; then \
 RUN repo sync
 ENV MACHINE=$MACHINE
 ENV TEMPLATECONF=$BUILD_INPUT_DIR/meta-gnss-sdr/conf
-RUN echo "/bin/echo -e \"\nWelcome to the Yocto-Geniux container.\nRelease version: $version $manifest_date\n\nThis is the interactive mode. Warm hugs, you brave developer!\nYou are still on time to change the MACHINE environment variable (default: $MACHINE), change and/or add recipes, etc.\nTo set up the building environment, type:\n  source ./oe-core/oe-init-build-env ./build ./bitbake\nand you will be ready to bitbake like there is no tomorrow.\nSee https://github.com/carlesfernandez/yocto-geniux/blob/master/README.md for details.\n\n\"" \
+RUN echo "/bin/echo -e \"\nWelcome to the Yocto-Geniux container.\nRelease version: $version $manifest_date\n\nThis is the interactive mode. Warm hugs, you brave developer!\nYou are still on time to change the MACHINE environment variable (default: $MACHINE), change and/or add recipes, etc.\nTo set up the building environment, type:\n  source ./oe-core/oe-init-build-env ./build ./bitbake\nand you will be ready to bitbake like there is no tomorrow.\nSee https://github.com/carlesfernandez/yocto-geniux/blob/main/README.md for details.\n\n\"" \
     >> /home/$USER_NAME/.bashrc
 
 CMD if [ "$host_git" = "1001" ]; then \
