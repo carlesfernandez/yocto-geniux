@@ -12,7 +12,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
     gawk wget git-core diffstat unzip texinfo gcc-multilib \
     build-essential chrpath socat cpio python python3 python3-pip python3-pexpect \
     xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev \
-    pylint3 xterm git-lfs locales sudo apt-transport-https ca-certificates curl \
+    pylint3 xterm git-lfs locales sudo apt-transport-https ca-certificates curl xdd \
     gnupg-agent software-properties-common nano && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # By default, Ubuntu uses dash as an alias for sh. Dash does not support the source command
