@@ -57,7 +57,7 @@ Usage:
 ./geniux-builder.sh [version] [manifest] [machine]
 
 Options:
- version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott. Default: warrior
+ version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott. Default: dunfell
            Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr
  manifest  Geniux version manifest: 20.11, 21.02, ..., latest. Default: latest
            Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags
@@ -89,7 +89,7 @@ Examples of usage:
 > run `screen` at this point, so the work won't be lost in case of a session
 > drop.
 
-- Build Geniux release `warrior`, with manifest date `latest`, for machines
+- Build Geniux release `dunfell`, with manifest date `latest`, for machines
   `zedboard-zynq7` and `raspberrypi3`:
 
   ```
@@ -166,7 +166,7 @@ optional, the last dot `.` is not):
 ```
 $ docker build --no-cache \
    --build-arg "version=warrior" \
-   --build-arg "manifest_date=20.09" \
+   --build-arg "manifest_date=21.02" \
    --build-arg "MACHINE=raspberrypi3" \
    --build-arg "host_uid=$(id -u)" --build-arg "host_gid=$(id -g)" \
    --tag "geniux-image:latest" .
@@ -187,8 +187,8 @@ If the `--build-arg` parameters are not specified, the default values are
   https://github.com/carlesfernandez/oe-gnss-sdr-manifest repository. If not
   set, or set to `latest`, it will pick up the current version of the manifest
   in the branch specified by `version`. In order to get a tagged manifest (for
-  instance, `warrior-20.09`), you can set `version=warrior` and
-  `manifest_date=20.09`.
+  instance, `warrior-21.02`), you can set `version=warrior` and
+  `manifest_date=21.02`.
 
 - The possible options for `MACHINE` names are those defined by the Yocto
   Project, plus those defined by the layers included in the manifest for the

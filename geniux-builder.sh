@@ -8,7 +8,7 @@ display_usage() {
     echo -e "This script builds and stores Geniux images."
     echo -e "\nUsage:\n./geniux-builder.sh [version] [manifest] [machine]\n"
     echo -e "Options:"
-    echo -e " version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott. Default: warrior"
+    echo -e " version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott. Default: dunfell"
     echo -e "           Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr"
     echo -e " manifest  Geniux version manifest: 20.11, 21.02, ..., latest. Default: latest"
     echo -e "           Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags"
@@ -37,7 +37,7 @@ if [ $# -gt 3 ]
         exit 1
 fi
 
-GENIUX_VERSION=${1:-warrior}
+GENIUX_VERSION=${1:-dunfell}
 GENIUX_MANIFEST_DATE=${2:-latest}
 
 MIRROR_PATH=$GENIUX_MIRROR_PATH
