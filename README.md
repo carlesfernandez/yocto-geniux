@@ -29,7 +29,7 @@ G<ins>**N**</ins>U/L<ins>**i**</ins>n<ins>**ux**</ins>.
 
 ## Building Geniux releases in a virtualized environment
 
-Get a powerful machine (as much RAM, storage capacity and CPU cores as you can)
+Get a powerful machine (as much RAM, storage capacity, and CPU cores as you can)
 and [install the Docker engine](https://docs.docker.com/engine/install/) on it.
 Make sure that it is up and running.
 
@@ -148,7 +148,7 @@ new features or recipes, fixing bugs, etc.), then you can skip the usage of the
 ## Getting ready for building Geniux with manual steps
 
 Get a powerful machine (as much RAM, storage capacity and CPU cores as you can),
-[install the Docker engine](https://docs.docker.com/engine/install/) and make
+[install the Docker engine](https://docs.docker.com/engine/install/), and make
 sure it is up and running. Then, get the source code of this repository and go
 to its base path:
 
@@ -279,7 +279,7 @@ Now, inside the container, prepare the building environment:
 $ source ./oe-core/oe-init-build-env ./build ./bitbake
 ```
 
-At this point, you can modify the `conf/local.conf` file, add new recipes and
+At this point, you can modify the `conf/local.conf` file, add new recipes, and
 experiment as you want. The `nano` editor is available for that. When you are
 ready to build the image:
 
@@ -294,7 +294,7 @@ $ bitbake -c populate_sdk gnss-sdr-dev-image
 ```
 
 If you want to build the Docker images, you need to run the container with the
-flag `--privileged=true` and the start the Docker daemon inside the container:
+flag `--privileged=true` and to start the Docker daemon inside the container:
 
 ```
 $ sudo service docker start
