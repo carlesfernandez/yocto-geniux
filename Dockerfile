@@ -5,6 +5,7 @@
 # Adapted from https://github.com/bstubert/dr-yocto, by Burkhard Stubert
 
 FROM ubuntu:18.04
+LABEL version="1.0" description="Geniux builder" maintainer="carles.fernandez@cttc.es"
 
 # Install all Linux packages required for Yocto builds, plus other packages used
 # in this file below, and in the interactive mode
@@ -35,7 +36,7 @@ RUN add-apt-repository \
 ADD https://storage.googleapis.com/git-repo-downloads/repo /usr/local/bin/
 RUN chmod 755 /usr/local/bin/repo
 
-ARG version=thud
+ARG version=dunfell
 ARG manifest_date=latest
 ARG MACHINE=zedboard-zynq7
 ARG host_uid=1001
