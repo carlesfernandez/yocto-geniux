@@ -1,5 +1,5 @@
-# SPDX-License-Identifier: Apache-2.0
-# SPDX-FileCopyrightText: 2020 Carles Fernandez-Prades <carles.fernandez(at)cttc.es>
+# SPDX-FileCopyrightText: 2020-2021, Carles Fernandez-Prades <carles.fernandez@cttc.es>
+# SPDX-License-Identifier: MIT
 *~
 .DS_Store
 jethro/
@@ -13,6 +13,9 @@ warrior/
 zeus/
 dunfell/
 gatesgarth/
+hardknott
+honister
+kirkstone
 master/
 main/
 output/

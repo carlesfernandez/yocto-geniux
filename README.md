@@ -1,6 +1,6 @@
 <!-- prettier-ignore-start -->
 [comment]: # (
-SPDX-License-Identifier: Apache-2.0
+SPDX-License-Identifier: MIT
 )
 
 [comment]: # (

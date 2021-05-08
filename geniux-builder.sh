@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # A script to build and store Geniux releases
-# SPDX-FileCopyrightText: 2020, Carles Fernandez-Prades <carles.fernandez@cttc.es>
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2020-2021, Carles Fernandez-Prades <carles.fernandez@cttc.es>
+# SPDX-License-Identifier: MIT
 
 display_usage() {
     echo -e "This script builds and stores Geniux images."

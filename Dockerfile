@@ -1,5 +1,5 @@
-# SPDX-FileCopyrightText: 2020, Carles Fernandez-Prades <carles.fernandez@cttc.es>
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2020-2021, Carles Fernandez-Prades <carles.fernandez@cttc.es>
+# SPDX-License-Identifier: MIT
 #
 # Docker image to build Yocto images for GNSS-SDR.
 # Adapted from https://github.com/bstubert/dr-yocto, by Burkhard Stubert
