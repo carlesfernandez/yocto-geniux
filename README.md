@@ -10,6 +10,8 @@ SPDX-FileCopyrightText: 2020-2021 Carles Fernandez-Prades <carles.fernandez@cttc
 
 # yocto-geniux
 
+[![REUSE status](https://api.reuse.software/badge/github.com/carlesfernandez/yocto-geniux)](https://api.reuse.software/info/github.com/carlesfernandez/yocto-geniux)
+
 The purpose of this repository is to automate the generation in a virtualized
 environment of Geniux images and their corresponding Software Development Kit
 (SDK) for the cross-compilation and usage of [GNSS-SDR](https://gnss-sdr.org) on
