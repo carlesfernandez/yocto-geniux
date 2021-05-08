@@ -3,7 +3,8 @@
 .git
 .cache
 .gitignore
-LICENSES
+.github/**
+LICENSES/**
 LICENSE
 README.md
 geniux-builder.sh
