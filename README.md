@@ -56,7 +56,7 @@ Usage:
 ./geniux-builder.sh [version] [manifest] [machine]
 
 Options:
- version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth. Default: warrior
+ version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott. Default: warrior
            Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr
  manifest  Geniux version manifest: 20.11, 21.02, ..., latest. Default: latest
            Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags
@@ -130,6 +130,13 @@ Examples of usage:
   $ ./geniux-builder.sh rocko latest "zedboard-zynq7 zcu102-zynqmp"
   ```
 
+- Build Geniux release `hardknott`, with manifest date `latest`, for machines
+  `raspberrypi4` and `intel-corei7-64`:
+
+  ```
+  $ ./geniux-builder.sh hardknott latest "raspberrypi4 intel-corei7-64"
+  ```
+
 If you want to have more detailed control of the whole process, or you are
 interested on further development (making changes to the Yocto layers, adding
 new features or recipes, fixing bugs, etc.), then you can skip the usage of the
@@ -172,7 +179,8 @@ If the `--build-arg` parameters are not specified, the default values are
   [Yocto Project Releases](https://wiki.yoctoproject.org/wiki/Releases),
   starting from Rocko (Yocto version 2.4):
 
-  - `rocko`, `sumo`, `thud`, `warrior`, `zeus`, `dunfell`, `gatesgarth`.
+  - `rocko`, `sumo`, `thud`, `warrior`, `zeus`, `dunfell`, `gatesgarth`,
+    `hardknott`.
 
 - The possible options for `manifest_date` are those of the tags found at the
   https://github.com/carlesfernandez/oe-gnss-sdr-manifest repository. If not
@@ -182,8 +190,8 @@ If the `--build-arg` parameters are not specified, the default values are
   `manifest_date=20.09`.
 
 - The possible options for `MACHINE` names are those defined by the Yocto
-  Project, plus those defined by the `meta-xilinx-bsp` and the
-  `meta-raspberrypi` layers:
+  Project, plus those defined by the layers included in the manifest for the
+  corresponding version. Examples:
 
   - List of machines supported by the Yocto Project: `qemuarm`, `qemuarm64`,
     `qemumips`, `qemumips64`, `qemuppc`, `qemux86`, `qemux86-64`.
@@ -193,6 +201,10 @@ If the `--build-arg` parameters are not specified, the default values are
   - List of machines defined by the
     [`meta-raspberrypi` layer](http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/tree/conf/machine)
     (please check your specific branch for a list of options available).
+
+  Check the branch of the
+  [manifest](https://github.com/carlesfernandez/oe-gnss-sdr-manifest)
+  corresponding to your version to check the available layers.
 
 - If you have user permission restrictions, you can use
   `--build-arg "host_uid=$(id -u)"` and `--build-arg "host_gid=$(id -g)"` to
@@ -301,10 +313,10 @@ container itself will be erased at exit.
 
 ## Copyright and License
 
-Copyright: &copy; 2016-2021 Carles Fern&aacute;ndez-Prades. All rights reserved.
+Copyright: &copy; 2020-2021 Carles Fern&aacute;ndez-Prades,
+[CTTC](http://www.cttc.es/). All rights reserved.
 
-The content of this repository is released under the [Apache 2.0](./LICENSE)
-license.
+The content of this repository is released under the [MIT](./LICENSE) license.
 
 ## Acknowledgements
 
