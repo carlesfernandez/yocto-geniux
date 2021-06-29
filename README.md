@@ -169,7 +169,7 @@ optional, the last dot `.` is not):
 ```
 $ docker build --no-cache \
    --build-arg "version=warrior" \
-   --build-arg "manifest_date=21.02" \
+   --build-arg "manifest_date=21.06" \
    --build-arg "MACHINE=raspberrypi3" \
    --build-arg "host_uid=$(id -u)" --build-arg "host_gid=$(id -g)" \
    --tag "geniux-image:latest" .
@@ -190,8 +190,8 @@ If the `--build-arg` parameters are not specified, the default values are
   https://github.com/carlesfernandez/oe-gnss-sdr-manifest repository. If not
   set, or set to `latest`, it will pick up the current version of the manifest
   in the branch specified by `version`. In order to get a tagged manifest (for
-  instance, `warrior-21.02`), you can set `version=warrior` and
-  `manifest_date=21.02`.
+  instance, `warrior-21.06`), you can set `version=warrior` and
+  `manifest_date=21.06`.
 
 - The possible options for `MACHINE` names are those defined by the Yocto
   Project, plus those defined by the layers included in the manifest for the
