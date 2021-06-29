@@ -10,7 +10,7 @@ display_usage() {
     echo -e "Options:"
     echo -e " version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott. Default: dunfell"
     echo -e "           Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr"
-    echo -e " manifest  Geniux version manifest: 20.11, 21.02, ..., latest. Default: latest"
+    echo -e " manifest  Geniux version manifest: 21.02, 21.06, ..., latest. Default: latest"
     echo -e "           Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags"
     echo -e " machine   Specify your (list of) MACHINE here. By default, zedboard-zynq7 and raspberrypi3 are built.\n"
     echo -e "Environment variables that affect behavior:"
