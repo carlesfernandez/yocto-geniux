@@ -109,9 +109,9 @@ RUN sudo usermod -aG docker $USER_NAME && newgrp docker
 WORKDIR $BUILD_INPUT_DIR
 
 RUN if [ "$manifest_date" = "latest" ] ; then \
-  repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b $version ; \
+  repo init -u https://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b $version --repo-url=https://gerrit.googlesource.com/git-repo --repo-rev=stable ; \
   else \
-  repo init -u git://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b refs/tags/$version-$manifest_date ; \
+  repo init -u https://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b refs/tags/$version-$manifest_date --repo-url=https://gerrit.googlesource.com/git-repo --repo-rev=stable ; \
   fi
 
 RUN repo sync
