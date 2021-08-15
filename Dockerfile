@@ -1,71 +1,10 @@
 # SPDX-FileCopyrightText: 2020-2021, Carles Fernandez-Prades <carles.fernandez@cttc.es>
 # SPDX-License-Identifier: MIT
 #
-# Docker image to build Yocto images for GNSS-SDR.
-# Adapted from https://github.com/bstubert/dr-yocto, by Burkhard Stubert
+# Docker image to build Geniux images.
 
-FROM ubuntu:18.04
-LABEL version="1.0" description="Geniux builder" maintainer="carles.fernandez@cttc.es"
-
-# Install all Linux packages required for Yocto builds, plus other packages used
-# in this file below, and in the interactive mode
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
-  apt-transport-https \
-  build-essential \
-  ca-certificates \
-  chrpath \
-  cpio \
-  curl \
-  debianutils \
-  diffstat \
-  gawk \
-  gcc-multilib \
-  git-core \
-  git-lfs \
-  gnupg-agent \
-  iputils-ping \
-  libegl1-mesa \
-  libsdl1.2-dev \
-  locales \
-  nano \
-  pylint3 \
-  python \
-  python3 \
-  python3-git \
-  python3-jinja2 \
-  python3-pexpect \
-  python3-pip \
-  socat \
-  software-properties-common \
-  sudo \
-  texinfo \
-  unzip \
-  wget \
-  xterm \
-  xxd \
-  xz-utils \
-  && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# By default, Ubuntu uses dash as an alias for sh. Dash does not support the
-# source command needed for setting up Yocto build environments. Use bash as an
-# alias for sh.
-RUN which dash &> /dev/null && (\
-  echo "dash dash/sh boolean false" | debconf-set-selections && \
-  DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash) || \
-  echo "Skipping dash reconfigure (not applicable)"
-
-# Install docker
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 apt-key add -
-RUN add-apt-repository \
-  "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) \
-  stable" && apt-get update && DEBIAN_FRONTEND=noninteractive \
-  apt-get -y install docker-ce docker-ce-cli containerd.io \
-  && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Install the repo tool to handle git submodules (meta layers) comfortably.
-ADD https://storage.googleapis.com/git-repo-downloads/repo /usr/local/bin/
-RUN chmod 755 /usr/local/bin/repo
+FROM yocto-geniux-base:v1.0
+LABEL version="2.0" description="Geniux builder" maintainer="carles.fernandez@cttc.es"
 
 ARG version=dunfell
 ARG manifest_date=latest

@@ -57,7 +57,7 @@ $ ./geniux-builder.sh --help
 This script builds and stores Geniux images.
 
 Usage:
-./geniux-builder.sh [version] [manifest] [machine]
+./geniux-builder.sh [version] [manifest] [machine] (--image-only / -i)
 
 Options:
  version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott. Default: dunfell
@@ -65,13 +65,14 @@ Options:
  manifest  Geniux version manifest: 21.02, 21.06, ..., latest. Default: latest
            Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags
  machine   Specify your (list of) MACHINE here. By default, zedboard-zynq7 and raspberrypi3 are built.
+ --image-only / -i  (optional) Build the Docker the image but do not execute the container.
 
 Environment variables that affect behavior:
  GENIUX_MIRROR_PATH          Base path to local mirror. Only used if set.
-                             e.g.: 'export GENIUX_MIRROR_PATH=/home/user/mirror'
+                             e.g.: 'export GENIUX_MIRROR_PATH=/home/carlesfernandez/mirror'
                              The mirror is expected to be at '$GENIUX_MIRROR_PATH/sources/$version'
  GENIUX_STORE_PATH           Path in which products will be stored. Only used if set.
-                             e.g.: 'export GENIUX_STORE_PATH=/home/user/geniux-releases'
+                             e.g.: 'export GENIUX_STORE_PATH=/home/carlesfernandez/geniux-releases'
  GENIUX_STORE_REQUIRES_SUDO  If set, the script will ask for super-user privileges to write in the store.
                              You will be asked only once at the beginning. The password will not be revealed.
                              e.g.: 'export GENIUX_STORE_REQUIRES_SUDO=1'
@@ -158,72 +159,23 @@ $ git clone https://github.com/carlesfernandez/yocto-geniux
 $ cd yocto-geniux
 ```
 
-You are now ready to generate the Docker container, and then running it in order
-to obtain the image files and the SDK installer.
+You are now ready to create the Docker image and then running the container
+that generates the Geniux image files and the SDK installer.
 
-## Building the container
 
-The container can be built by doing (parameters `--build-arg "whatever"` are
-optional, the last dot `.` is not):
-
-```
-$ docker build --no-cache \
-   --build-arg "version=warrior" \
-   --build-arg "manifest_date=21.06" \
-   --build-arg "MACHINE=raspberrypi3" \
-   --build-arg "host_uid=$(id -u)" --build-arg "host_gid=$(id -g)" \
-   --tag "geniux-image:latest" .
-```
-
-If the `--build-arg` parameters are not specified, the default values are
-`version=thud`, `manifest_date=latest`, `MACHINE=zedboard-zynq7`,
-`host_uid=1001` and `host_gid=1001`.
-
-- The possible options for `version` names are those of the
-  [Yocto Project Releases](https://wiki.yoctoproject.org/wiki/Releases),
-  starting from Rocko (Yocto version 2.4):
-
-  - `rocko`, `sumo`, `thud`, `warrior`, `zeus`, `dunfell`, `gatesgarth`,
-    `hardknott`.
-
-- The possible options for `manifest_date` are those of the tags found at the
-  https://github.com/carlesfernandez/oe-gnss-sdr-manifest repository. If not
-  set, or set to `latest`, it will pick up the current version of the manifest
-  in the branch specified by `version`. In order to get a tagged manifest (for
-  instance, `warrior-21.06`), you can set `version=warrior` and
-  `manifest_date=21.06`.
-
-- The possible options for `MACHINE` names are those defined by the Yocto
-  Project, plus those defined by the layers included in the manifest for the
-  corresponding version. Examples:
-
-  - List of machines supported by the Yocto Project: `qemuarm`, `qemuarm64`,
-    `qemumips`, `qemumips64`, `qemuppc`, `qemux86`, `qemux86-64`.
-  - List of machines defined by the
-    [`meta-xilinx-bsp` layer](https://github.com/Xilinx/meta-xilinx/tree/master/meta-xilinx-bsp)
-    (please check your specific branch for a list of options available).
-  - List of machines defined by the
-    [`meta-raspberrypi` layer](http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/tree/conf/machine)
-    (please check your specific branch for a list of options available).
-
-  Check the branch of the
-  [manifest](https://github.com/carlesfernandez/oe-gnss-sdr-manifest)
-  corresponding to your version to check the available layers.
-
-- If you have user permission restrictions, you can use
-  `--build-arg "host_uid=$(id -u)"` and `--build-arg "host_gid=$(id -g)"` to
-  provide specific user and group id to the internal container user that will be
-  able to write outside the container. By default, both `host_uid` and
-  `host_gid` are set to `1001`. If you do not use these arguments, you might
-  need `sudo` access in order to copy files outside the container.
-
-## Getting the development image and the SDK installer
+## Generating Geniux images and the SDK installer step-by-step
 
 ### Non-interactive method
 
 > NOTE: if you are operating on a remote host through `ssh`, you might want to
 > run `screen` at this point, so the work won't be lost in case of a session
 > drop.
+
+Build the Docker image but do not run the container:
+
+```
+$ ./geniux-builder.sh [version] [manifest] [machine] -i
+```
 
 Create an output folder and run the container:
 
@@ -232,7 +184,7 @@ $ mkdir -p output
 $ docker run -it --rm \
   -v $PWD/output:/home/geniux/yocto/output \
   --privileged=true \
-  geniux-image:latest
+  geniux-$version:$manifest.$machine
 ```
 
 If you have a local mirror available, you can provide access from within the
@@ -244,7 +196,7 @@ $ docker run -it --rm \
   -v $PWD/output:/home/geniux/yocto/output \
   -v $my_mirror:/source_mirror/sources/$version \
   --privileged=true \
-  geniux-image:latest
+  geniux-$version:$manifest.$machine
 ```
 
 replacing `$my_mirror` by the actual path of your mirror and `$version` by the
@@ -262,14 +214,26 @@ erased after completion.
 > run `screen` at this point, so the work won't be lost in case of a session
 > drop.
 
+Build the Docker image but do not run the container:
+
+```
+$ ./geniux-builder.sh [version] [manifest] [machine] -i
+```
+
+Now run the container in the interactive mode:
+
 ```
 $ mkdir -p output
 $ docker run -it --rm \
    -v $PWD/output:/home/geniux/yocto/output \
    -v $my_mirror:/source_mirror/sources/$version \
    --privileged=true \
-   geniux-image:latest bash
+   geniux-$version:$manifest.$machine bash
 ```
+
+replacing `$my_mirror` by the actual path of your mirror and `$version` by the
+actual version name you used when building the container. If you do not have any
+local mirror, just omit the `-v $my_mirror:...` line.
 
 Notice the final `bash`, that will take you to the bash console without
 executing the predefined commands.
