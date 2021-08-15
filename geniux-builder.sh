@@ -83,7 +83,7 @@ if [ $STORE_PATH ]
 fi
 
 ListOfMachines="zedboard-zynq7 raspberrypi3"
-if [ $# -eq 3 ]
+if [ $# -gt 2 ]
     then
         ListOfMachines="$3"
 fi
@@ -125,7 +125,7 @@ if [[ "$OSTYPE" == "darwin"* ]]
 fi
 
 for machine in $ListOfMachines; do
-    echo "Building Geniux $GENIUX_VERSION-$GENIUX_MANIFEST_DATE for machine $machine..."
+    echo -e "Building Geniux $GENIUX_VERSION-$GENIUX_MANIFEST_DATE for machine $machine...\n"
     cd $BASEDIR/$GENIUX_VERSION
     mkdir -p $GENIUX_VERSION-$machine && cd $GENIUX_VERSION-$machine && cp ../../Dockerfile ./
     docker build --no-cache \
