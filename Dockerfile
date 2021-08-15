@@ -78,9 +78,9 @@ CMD if [ "$host_git" = "1001" ]; then \
   bitbake -c populate_sdk gnss-sdr-dev-image && \
   bitbake gnss-sdr-demo-image && \
   bitbake gnss-sdr-dev-docker && \
-  mv ./tmp-glibc/deploy/images /home/geniux/yocto/output/ && \
+  echo "" | sudo -S mv ./tmp-glibc/deploy/images /home/geniux/yocto/output/ && \
   rm ./downloads/*.done && \
   rm -rf ./downloads/git2 && \
-  mv ./downloads /home/geniux/yocto/output/ && \
-  mv ./tmp-glibc/deploy/sdk /home/geniux/yocto/output/ ; \
+  sudo mv ./downloads /home/geniux/yocto/output/ && \
+  sudo mv ./tmp-glibc/deploy/sdk /home/geniux/yocto/output/ ; \
   fi
