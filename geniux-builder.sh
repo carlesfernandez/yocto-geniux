@@ -37,7 +37,7 @@ if [[ ( $4 == "--image-only") || $4 == "-i" ]]
     else
         if [ ! $# == 3 ]
             then
-                echo -e "Too much arguments1!\n"
+                echo -e "Wrong number of arguments!\n"
                 display_usage
                 exit 1
         fi
@@ -66,7 +66,7 @@ fi
 
 if [ $# -gt 4 ]
     then
-        echo -e "Too much arguments2!\n"
+        echo -e "Too much arguments!\n"
         display_usage
         exit 1
 fi
