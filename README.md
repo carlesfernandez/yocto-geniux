@@ -142,6 +142,10 @@ Examples of usage:
   $ ./geniux-builder.sh hardknott latest "raspberrypi4 intel-corei7-64"
   ```
 
+At the end of the building process, the output products will be placed in a
+folder named `./$version/output_$machine` under the `yocto-geniux` base path,
+and copied to `$GENIUX_STORE_PATH` if that environment variable is defined.
+
 If you want to have more detailed control of the whole process, or you are
 interested on further development (making changes to the Yocto layers, adding
 new features or recipes, fixing bugs, etc.), then you can skip running the
