@@ -4,7 +4,7 @@
 # Yocto Geniux base image to help building Geniux.
 
 FROM ubuntu:18.04
-LABEL version="1.0" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
+LABEL version="1.1" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
 
 # Install all Linux packages required for Yocto builds, plus other packages used
 # in this file below, and in the interactive mode
@@ -25,6 +25,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
   gnupg-agent \
   iputils-ping \
   libegl1-mesa \
+  liblz4-tool \
   libsdl1.2-dev \
   locales \
   nano \
@@ -44,6 +45,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
   xterm \
   xxd \
   xz-utils \
+  zstd \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # By default, Ubuntu uses dash as an alias for sh. Dash does not support the
