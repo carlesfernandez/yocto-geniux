@@ -8,6 +8,7 @@ LICENSES/**
 LICENSE
 README.md
 geniux-builder.sh
+base-image
 jethro
 krogoth
 morty
