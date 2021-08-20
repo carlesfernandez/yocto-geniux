@@ -102,6 +102,7 @@ fi
 if [ $STORE_REQUIRES_SUDO ]
     then
         read -s -p "Enter Password for sudo: " sudoPW
+        echo -e "\n"
 fi
 
 BASEDIR=$PWD
