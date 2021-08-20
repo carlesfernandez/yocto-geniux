@@ -231,6 +231,7 @@ executing the predefined commands.**
 Now, inside the container, prepare the building environment:
 
 ```
+$ repo sync   # Recommended if you are building the 'latest' manifest
 $ source ./oe-core/oe-init-build-env ./build ./bitbake
 ```
 
