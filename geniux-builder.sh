@@ -10,9 +10,10 @@ display_usage() {
     echo -e "Options:"
     echo -e " version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott. Default: dunfell"
     echo -e "           Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr"
-    echo -e " manifest  Geniux version manifest: 21.02, 21.06, ..., latest. Default: latest"
+    echo -e " manifest  Geniux version manifest: 21.02, 21.08, ..., latest. Default: latest"
     echo -e "           Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags"
     echo -e " machine   Specify your (list of) MACHINE here. By default, zedboard-zynq7 and raspberrypi3 are built."
+    echo -e "           If more than one, surround it with quotes, e.g.: \"raspberrypi4-64 intel-corei7-64\""
     echo -e " --image-only / -i  (optional) Build the Docker image but do not execute the container.\n"
     echo -e "Environment variables that affect behavior:"
     echo -e " GENIUX_MIRROR_PATH          Base path to local mirror. Only used if set."
@@ -73,6 +74,16 @@ fi
 
 GENIUX_VERSION=${1:-dunfell}
 GENIUX_MANIFEST_DATE=${2:-latest}
+
+# Workaround for known bugs
+if [[ $GENIUX_MANIFEST_DATE == "21.06" ]]
+    then
+        if [[ $GENIUX_VERSION == "zeus" || $GENIUX_VERSION == "dunfell" || $GENIUX_VERSION == "gatesgarth" || $GENIUX_VERSION == "hardknott" ]]
+            then
+                echo -e "\033[1m\033[35mWARNING: Version $GENIUX_VERSION-$GENIUX_MANIFEST_DATE has a known bug. Bumping to 21.08.\033[0m\n"
+                GENIUX_MANIFEST_DATE="21.08"
+        fi
+fi
 
 MIRROR_PATH=$GENIUX_MIRROR_PATH
 STORE_PATH=$GENIUX_STORE_PATH

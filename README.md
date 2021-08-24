@@ -62,9 +62,11 @@ Usage:
 Options:
  version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott. Default: dunfell
            Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr
- manifest  Geniux version manifest: 21.02, 21.06, ..., latest. Default: latest
+ manifest  Geniux version manifest: 21.02, 21.08, ..., latest. Default: latest
            Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags
  machine   Specify your (list of) MACHINE here. By default, zedboard-zynq7 and raspberrypi3 are built.
+           If more than one, surround it with quotes, e.g.: "raspberrypi4-64 intel-corei7-64"
+
  --image-only / -i  (optional) Build the Docker the image but do not execute the container.
 
 Environment variables that affect behavior:
@@ -107,11 +109,11 @@ Examples of usage:
   $ ./geniux-builder.sh thud
   ```
 
-- Build Geniux release `thud`, with manifest date `20.09`, for machines
+- Build Geniux release `thud`, with manifest date `21.08`, for machines
   `zedboard-zynq7` and `raspberrypi3`:
 
   ```
-  $ ./geniux-builder.sh thud 20.09
+  $ ./geniux-builder.sh thud 21.08
   ```
 
 - Build Geniux release `warrior`, with manifest date `latest`, only for machine
@@ -121,11 +123,11 @@ Examples of usage:
   $ ./geniux-builder.sh warrior latest zedboard-zynq7
   ```
 
-- Build Geniux release `warrior`, with manifest date `20.09`, only for machine
+- Build Geniux release `warrior`, with manifest date `21.08`, only for machine
   `raspberrypi3`:
 
   ```
-  $ ./geniux-builder.sh warrior 20.09 raspberrypi3
+  $ ./geniux-builder.sh warrior 21.08 raspberrypi3
   ```
 
 - Build Geniux release `rocko`, with manifest date `latest`, for machines
