@@ -4,7 +4,7 @@
 # Yocto Geniux base image to help building Geniux.
 
 FROM ubuntu:18.04
-LABEL version="1.1" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
+LABEL version="1.2" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
 
 # Install all Linux packages required for Yocto builds, plus other packages used
 # in this file below, and in the interactive mode
@@ -20,7 +20,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
   diffstat \
   gawk \
   gcc-multilib \
-  git-core \
+  git \
   git-lfs \
   gnupg-agent \
   iputils-ping \
@@ -28,7 +28,9 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
   liblz4-tool \
   libsdl1.2-dev \
   locales \
+  mesa-common-dev \
   nano \
+  pwgen \
   pylint3 \
   python \
   python3 \
@@ -36,12 +38,14 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
   python3-jinja2 \
   python3-pexpect \
   python3-pip \
+  python3-subunit \
   socat \
   software-properties-common \
   sudo \
   texinfo \
   unzip \
   wget \
+  whois \
   xterm \
   xxd \
   xz-utils \

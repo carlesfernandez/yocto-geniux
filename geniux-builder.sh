@@ -118,7 +118,7 @@ fi
 
 BASEDIR=$PWD
 
-YOCTO_GENIUX_BASE_IMAGE="yocto-geniux-base:v1.1"
+YOCTO_GENIUX_BASE_IMAGE="yocto-geniux-base:v1.2"
 if test -z "$(docker images -q $YOCTO_GENIUX_BASE_IMAGE)"
    then
        cd base-image
