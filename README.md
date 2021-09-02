@@ -24,7 +24,7 @@ the building process defined by the
 
 More info at:
  - [Cross-compiling GNSS-SDR](https://gnss-sdr.org/docs/tutorials/cross-compiling/).
- - [Announcement of Geniux 21.08 release](https://gnss-sdr.org/introducing-geniux-v2108/)
+ - [Announcement of Geniux 21.08 release](https://gnss-sdr.org/introducing-geniux-v2108/).
 
 The name Geniux comes from <ins>**G**</ins>NSS-SDR for <ins>**E**</ins>mbedded
 G<ins>**N**</ins>U/L<ins>**i**</ins>n<ins>**ux**</ins>.
