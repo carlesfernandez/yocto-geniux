@@ -35,6 +35,9 @@ RUN echo "${USER_NAME} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/${USER_NAME} &&
 # the group. The symbolic name of the group and user is geniux.
 RUN groupadd -g $host_gid $USER_NAME && useradd -g $host_gid -m -s /bin/bash -u $host_uid $USER_NAME
 
+# Always get latest packages
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y upgrade && apt-get clean && rm -rf /var/lib/apt/lists/*
+
 # Perform the Yocto build as user geniux (not as root).
 # By default, docker runs as root. However, Yocto builds should not be run as
 # root, but as a normal user. Hence, we switch to the newly created user geniux.
