@@ -36,9 +36,14 @@ if [[ ( $4 == "--image-only") || $4 == "-i" ]]
     then
         IMAGE_ONLY=1
     else
-        if [ ! $# == 3 ]
+        if [[ !( $4 == "") ]]
             then
-                echo -e "Wrong number of arguments!\n"
+                if [ $# -gt 4 ]
+                    then
+                        echo -e "Wrong number of arguments!\n"
+                    else
+                        echo -e "Unknown value for the 4th parameter.\n"
+                fi
                 display_usage
                 exit 1
         fi
