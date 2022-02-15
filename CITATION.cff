@@ -1,0 +1,33 @@
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2022 C. Fernandez-Prades carles.fernandez(at)cttc.es
+---
+abstract: "Virtualized Geniux builder."
+authors:
+  - affiliation: "Centre Tecnològic de Telecomunicacions de Catalunya (CTTC)"
+    alias: carlesfernandez
+    email: carles.fernandez@cttc.es
+    family-names: "Fernández-Prades"
+    given-names: Carles
+    orcid: "https://orcid.org/0000-0002-9201-7007"
+cff-version: "1.2.0"
+date-released: "2021-08-24"
+doi: 10.5281/zenodo.5244379
+identifiers:
+  - description: "The concept DOI of the work. This is a DOI always pointing to the latest stable release."
+    type: doi
+    value: 10.5281/zenodo.4743667
+keywords:
+  - "Embedded systems"
+  - "GNSS-SDR"
+  - "software radio"
+  - GNSS
+  - SDR
+  - yocto
+  - docker
+  - Dockerfile
+license: MIT
+message: "If you use this software, please cite it using the metadata from this file."
+repository-code: "https://github.com/carlesfernandez/yocto-geniux"
+title: "Yocto Geniux"
+type: software
+version: "2.0"
