@@ -8,7 +8,7 @@ display_usage() {
     echo -e "This script builds and stores Geniux images."
     echo -e "\nUsage:\n./geniux-builder.sh [version] [manifest] [machine] (--image-only / -i)\n"
     echo -e "Options:"
-    echo -e " version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott. Default: dunfell"
+    echo -e " version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott, honister. Default: dunfell"
     echo -e "           Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr"
     echo -e " manifest  Geniux version manifest: 21.02, 21.08, ..., latest. Default: latest"
     echo -e "           Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags"

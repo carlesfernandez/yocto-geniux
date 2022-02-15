@@ -4,7 +4,7 @@ SPDX-License-Identifier: MIT
 )
 
 [comment]: # (
-SPDX-FileCopyrightText: 2020-2021 Carles Fernandez-Prades <carles.fernandez@cttc.es>
+SPDX-FileCopyrightText: 2020-2022 Carles Fernandez-Prades <carles.fernandez@cttc.es>
 )
 <!-- prettier-ignore-end -->
 
@@ -65,7 +65,7 @@ Usage:
 ./geniux-builder.sh [version] [manifest] [machine] (--image-only / -i)
 
 Options:
- version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott. Default: dunfell
+ version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott, honister. Default: dunfell
            Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr
  manifest  Geniux version manifest: 21.02, 21.08, ..., latest. Default: latest
            Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags
@@ -147,6 +147,13 @@ Examples of usage:
 
   ```
   $ ./geniux-builder.sh hardknott latest "raspberrypi4 intel-corei7-64"
+  ```
+
+- Build Geniux release `honister`, with manifest date `latest`, only for machine
+  `raspberrypi4-64`:
+
+  ```
+  $ ./geniux-builder.sh honister latest raspberrypi4-64
   ```
 
 At the end of the building process, the output products will be placed in a
@@ -286,7 +293,7 @@ container itself will be erased at exit.
 
 ## Copyright and License
 
-Copyright: &copy; 2020-2021 Carles Fern&aacute;ndez-Prades,
+Copyright: &copy; 2020-2022 Carles Fern&aacute;ndez-Prades,
 [CTTC](http://www.cttc.es/). All rights reserved.
 
 The content of this repository is released under the [MIT](./LICENSE) license.
