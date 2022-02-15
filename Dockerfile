@@ -4,7 +4,7 @@
 # Docker image to build Geniux images.
 
 FROM yocto-geniux-base:v1.2
-LABEL version="2.0" description="Geniux builder" maintainer="carles.fernandez@cttc.es"
+LABEL version="2.1" description="Geniux builder" maintainer="carles.fernandez@cttc.es"
 
 ARG version=dunfell
 ARG manifest_date=latest
