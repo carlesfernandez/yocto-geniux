@@ -4,7 +4,7 @@
 # Yocto Geniux base image to help building Geniux.
 
 FROM ubuntu:18.04
-LABEL version="1.2" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
+LABEL version="1.3" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
 
 # Install all Linux packages required for Yocto builds, plus other packages used
 # in this file below, and in the interactive mode
@@ -23,6 +23,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
   git \
   git-lfs \
   gnupg-agent \
+  iproute2 \
   iputils-ping \
   libegl1-mesa \
   liblz4-tool \
