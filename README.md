@@ -25,6 +25,7 @@ the building process defined by the
 More info at:
  - [Cross-compiling GNSS-SDR](https://gnss-sdr.org/docs/tutorials/cross-compiling/).
  - [Announcement of Geniux 21.08 release](https://gnss-sdr.org/introducing-geniux-v2108/).
+ - [Announcement of Geniux 22.02 release](https://gnss-sdr.org/introducing-geniux-v2202/).
 
 The name Geniux comes from <ins>**G**</ins>NSS-SDR for <ins>**E**</ins>mbedded
 G<ins>**N**</ins>U/L<ins>**i**</ins>n<ins>**ux**</ins>.
@@ -65,9 +66,10 @@ Usage:
 ./geniux-builder.sh [version] [manifest] [machine] (--image-only / -i)
 
 Options:
- version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott, honister. Default: dunfell
+ version   Geniux version: rocko, sumo, thud, warrior, zeus,
+           dunfell, gatesgarth, hardknott, honister. Default: dunfell
            Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr
- manifest  Geniux version manifest: 21.02, 21.08, ..., latest. Default: latest
+ manifest  Geniux version manifest: 21.02, 21.08, 22.02, latest. Default: latest
            Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags
  machine   Specify your (list of) MACHINE here. By default, zedboard-zynq7 and raspberrypi3 are built.
            If more than one, surround it with quotes, e.g.: "raspberrypi4-64 intel-corei7-64"
@@ -114,11 +116,11 @@ Examples of usage:
   $ ./geniux-builder.sh thud
   ```
 
-- Build Geniux release `thud`, with manifest date `21.08`, for machines
+- Build Geniux release `thud`, with manifest date `22.02`, for machines
   `zedboard-zynq7` and `raspberrypi3`:
 
   ```
-  $ ./geniux-builder.sh thud 21.08
+  $ ./geniux-builder.sh thud 22.02
   ```
 
 - Build Geniux release `warrior`, with manifest date `latest`, only for machine
@@ -128,11 +130,11 @@ Examples of usage:
   $ ./geniux-builder.sh warrior latest zedboard-zynq7
   ```
 
-- Build Geniux release `warrior`, with manifest date `21.08`, only for machine
+- Build Geniux release `warrior`, with manifest date `22.02`, only for machine
   `raspberrypi3`:
 
   ```
-  $ ./geniux-builder.sh warrior 21.08 raspberrypi3
+  $ ./geniux-builder.sh warrior 22.02 raspberrypi3
   ```
 
 - Build Geniux release `rocko`, with manifest date `latest`, for machines
