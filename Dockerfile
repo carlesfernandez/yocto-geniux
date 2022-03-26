@@ -56,6 +56,7 @@ RUN if [ "$manifest_date" = "latest" ] ; then \
   repo init -u https://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b refs/tags/$version-$manifest_date --repo-url=https://gerrit.googlesource.com/git-repo --repo-rev=stable ; \
   fi
 
+RUN sed -i -r 's/git\:/https\:/g' /home/$USER_NAME/yocto/input/.repo/manifests/default.xml
 RUN repo sync
 ENV MACHINE=$MACHINE
 ENV TEMPLATECONF=$BUILD_INPUT_DIR/meta-gnss-sdr/conf
