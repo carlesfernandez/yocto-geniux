@@ -1,10 +1,10 @@
-# SPDX-FileCopyrightText: 2020-2021, Carles Fernandez-Prades <carles.fernandez@cttc.es>
+# SPDX-FileCopyrightText: 2020-2022, Carles Fernandez-Prades <carles.fernandez@cttc.es>
 # SPDX-License-Identifier: MIT
 #
 # Docker image to build Geniux images.
 
-FROM yocto-geniux-base:v1.2
-LABEL version="2.1" description="Geniux builder" maintainer="carles.fernandez@cttc.es"
+FROM yocto-geniux-base:v1.4
+LABEL version="2.3" description="Geniux builder" maintainer="carles.fernandez@cttc.es"
 
 ARG version=dunfell
 ARG manifest_date=latest
