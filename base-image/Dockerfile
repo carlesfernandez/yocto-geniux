@@ -1,15 +1,16 @@
-# SPDX-FileCopyrightText: 2021, Carles Fernandez-Prades <carles.fernandez@cttc.es>
+# SPDX-FileCopyrightText: 2022, Carles Fernandez-Prades <carles.fernandez@cttc.es>
 # SPDX-License-Identifier: MIT
 #
 # Yocto Geniux base image to help building Geniux.
 
 FROM ubuntu:18.04
-LABEL version="1.3" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
+LABEL version="1.4" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
 
 # Install all Linux packages required for Yocto builds, plus other packages used
 # in this file below, and in the interactive mode
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
   apt-transport-https \
+  base-files \
   bc \
   build-essential \
   ca-certificates \
@@ -23,6 +24,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
   git \
   git-lfs \
   gnupg-agent \
+  gzip \
   iproute2 \
   iputils-ping \
   libegl1-mesa \
@@ -43,8 +45,10 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
   socat \
   software-properties-common \
   sudo \
+  tar \
   texinfo \
   unzip \
+  util-linux \
   wget \
   whois \
   xterm \

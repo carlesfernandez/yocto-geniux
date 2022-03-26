@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # A script to build and store Geniux releases
-# SPDX-FileCopyrightText: 2020-2021, Carles Fernandez-Prades <carles.fernandez@cttc.es>
+# SPDX-FileCopyrightText: 2020-2022, Carles Fernandez-Prades <carles.fernandez@cttc.es>
 # SPDX-License-Identifier: MIT
 
 display_usage() {
@@ -124,7 +124,7 @@ fi
 
 BASEDIR=$PWD
 
-YOCTO_GENIUX_BASE_IMAGE="yocto-geniux-base:v1.2"
+YOCTO_GENIUX_BASE_IMAGE="yocto-geniux-base:v1.4"
 if test -z "$(docker images -q $YOCTO_GENIUX_BASE_IMAGE)"
    then
        cd base-image
