@@ -296,7 +296,7 @@ container itself will be erased at exit.
 ## Copyright and License
 
 Copyright: &copy; 2020-2022 Carles Fern&aacute;ndez-Prades,
-[CTTC](http://www.cttc.es/). All rights reserved.
+[CTTC](https://www.cttc.cat). All rights reserved.
 
 The content of this repository is released under the [MIT](./LICENSE) license.
 
