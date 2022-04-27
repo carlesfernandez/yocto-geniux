@@ -66,15 +66,15 @@ Usage:
 ./geniux-builder.sh [version] [manifest] [machine] (--image-only / -i)
 
 Options:
- version   Geniux version: rocko, sumo, thud, warrior, zeus,
-           dunfell, gatesgarth, hardknott, honister. Default: dunfell
+ version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell,
+           gatesgarth, hardknott, honister, kirkstone. Default: dunfell
            Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr
  manifest  Geniux version manifest: 21.02, 21.08, 22.02, latest. Default: latest
            Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags
  machine   Specify your (list of) MACHINE here. By default, zedboard-zynq7 and raspberrypi3 are built.
-           If more than one, surround it with quotes, e.g.: "raspberrypi4-64 intel-corei7-64"
+           If more than one, surround them with quotes, e.g.: "raspberrypi4-64 intel-corei7-64"
 
- --image-only / -i  (optional) Build the Docker the image but do not execute the container.
+ --image-only / -i  (optional) Build the Docker image but do not execute the container.
 
 Environment variables that affect behavior:
  GENIUX_MIRROR_PATH          Base path to local mirror. Only used if set.
@@ -156,6 +156,12 @@ Examples of usage:
 
   ```
   $ ./geniux-builder.sh honister latest raspberrypi4-64
+  ```
+- Build Geniux release `kirkstone`, with manifest date `latest`, only for machine
+  `raspberrypi4-64`:
+
+  ```
+  $ ./geniux-builder.sh kirkstone latest raspberrypi4-64
   ```
 
 At the end of the building process, the output products will be placed in a
