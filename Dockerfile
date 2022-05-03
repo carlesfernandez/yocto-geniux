@@ -63,6 +63,23 @@ ENV TEMPLATECONF=$BUILD_INPUT_DIR/meta-gnss-sdr/conf
 RUN echo "/bin/echo -e \"\nWelcome to the Yocto-Geniux container.\nRelease version: $version $manifest_date\n\nThis is the interactive mode. Warm hugs, you brave developer!\nYou are still on time to change the MACHINE environment variable (default: $MACHINE), change and/or add recipes, etc.\nTo set up the building environment, type:\n  source ./oe-core/oe-init-build-env ./build ./bitbake\nand you will be ready to bitbake like there is no tomorrow.\nSee https://github.com/carlesfernandez/yocto-geniux/blob/main/README.md for details.\n\n\"" \
   >> /home/$USER_NAME/.bashrc
 
+# Ugly workaround for honister - zcu102, zcu208
+RUN if [ "$version" = "honister" ] && [ $(expr "$MACHINE" : '.*zynq.*') -gt 0 ] ; then \
+  git config --global --add safe.directory /home/$USER_NAME/yocto/input/build/tmp-glibc/work/cortexa72-cortexa53-geniux-linux/qemu-xilinx/v6.1.0-xilinx-v2022.1+gitAUTOINC+52a9b22fae-r0/git && \
+  git config --global --add safe.directory /home/$USER_NAME/yocto/input/build/tmp-glibc/work/cortexa72-cortexa53-geniux-linux/qemu-xilinx/v6.1.0-xilinx-v2022.1+gitAUTOINC+52a9b22fae-r0/git/capstone && \
+  git config --global --add safe.directory /home/$USER_NAME/yocto/input/build/tmp-glibc/work/cortexa72-cortexa53-geniux-linux/qemu-xilinx/v6.1.0-xilinx-v2022.1+gitAUTOINC+52a9b22fae-r0/git/dtc && \
+  git config --global --add safe.directory /home/$USER_NAME/yocto/input/build/tmp-glibc/work/cortexa72-cortexa53-geniux-linux/qemu-xilinx/v6.1.0-xilinx-v2022.1+gitAUTOINC+52a9b22fae-r0/git/slirp && \
+  git config --global --add safe.directory /home/$USER_NAME/yocto/input/build/tmp-glibc/work/cortexa72-cortexa53-geniux-linux/qemu-xilinx/v6.1.0-xilinx-v2022.1+gitAUTOINC+52a9b22fae-r0/git/tests/fp/berkeley-testfloat-3 && \
+  git config --global --add safe.directory /home/$USER_NAME/yocto/input/build/tmp-glibc/work/cortexa72-cortexa53-geniux-linux/qemu-xilinx/v6.1.0-xilinx-v2022.1+gitAUTOINC+52a9b22fae-r0/git/ui/keycodemapdb && \
+  git config --global --add safe.directory /home/$USER_NAME/yocto/input/build/tmp-glibc/work/x86_64-nativesdk-geniuxsdk-linux/nativesdk-qemu-xilinx/v6.1.0-xilinx-v2022.1+gitAUTOINC+52a9b22fae-r0/git && \
+  git config --global --add safe.directory /home/$USER_NAME/yocto/input/build/tmp-glibc/work/x86_64-nativesdk-geniuxsdk-linux/nativesdk-qemu-xilinx/v6.1.0-xilinx-v2022.1+gitAUTOINC+52a9b22fae-r0/git/dtc && \
+  git config --global --add safe.directory /home/$USER_NAME/yocto/input/build/tmp-glibc/work/x86_64-nativesdk-geniuxsdk-linux/nativesdk-qemu-xilinx/v6.1.0-xilinx-v2022.1+gitAUTOINC+52a9b22fae-r0/git/slirp && \
+  git config --global --add safe.directory /home/$USER_NAME/yocto/input/build/tmp-glibc/work/x86_64-nativesdk-geniuxsdk-linux/nativesdk-qemu-xilinx/v6.1.0-xilinx-v2022.1+gitAUTOINC+52a9b22fae-r0/git/capstone && \
+  git config --global --add safe.directory /home/$USER_NAME/yocto/input/build/tmp-glibc/work/x86_64-nativesdk-geniuxsdk-linux/nativesdk-qemu-xilinx/v6.1.0-xilinx-v2022.1+gitAUTOINC+52a9b22fae-r0/git/tests/fp/berkeley-testfloat-3 && \
+  git config --global --add safe.directory /home/$USER_NAME/yocto/input/build/tmp-glibc/work/x86_64-nativesdk-geniuxsdk-linux/nativesdk-qemu-xilinx/v6.1.0-xilinx-v2022.1+gitAUTOINC+52a9b22fae-r0/git/ui/keycodemapdb && \
+  git config --global --add safe.directory /home/$USER_NAME/yocto/input/build/tmp-glibc/work/x86_64-nativesdk-geniuxsdk-linux/nativesdk-qemu-xilinx/v6.1.0-xilinx-v2022.1+gitAUTOINC+52a9b22fae-r0/git/tests/fp/berkeley-softfloat-3 ; \
+  fi
+
 CMD if [ "$host_git" = "1001" ]; then \
   source ./oe-core/oe-init-build-env ./build ./bitbake && \
   sudo service docker start && \
