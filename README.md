@@ -152,10 +152,10 @@ Examples of usage:
   ```
 
 - Build Geniux release `honister`, with manifest date `latest`, only for machine
-  `raspberrypi4-64`:
+  `zcu208-zynqmp`:
 
   ```
-  $ ./geniux-builder.sh honister latest raspberrypi4-64
+  $ ./geniux-builder.sh honister latest zcu208-zynqmp
   ```
 - Build Geniux release `kirkstone`, with manifest date `latest`, only for machine
   `raspberrypi4-64`:
