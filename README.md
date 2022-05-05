@@ -157,6 +157,7 @@ Examples of usage:
   ```
   $ ./geniux-builder.sh honister latest zcu208-zynqmp
   ```
+
 - Build Geniux release `kirkstone`, with manifest date `latest`, only for machine
   `raspberrypi4-64`:
 

@@ -4,14 +4,17 @@
 # Yocto Geniux base image to help building Geniux.
 
 FROM ubuntu:18.04
-LABEL version="1.4" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
+LABEL version="1.5" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
 
 # Install all Linux packages required for Yocto builds, plus other packages used
 # in this file below, and in the interactive mode
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
+  apt \
   apt-transport-https \
   base-files \
+  bash \
   bc \
+  bsdutils \
   build-essential \
   ca-certificates \
   chrpath \
@@ -19,6 +22,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
   curl \
   debianutils \
   diffstat \
+  distro-info-data \
+  fdisk \
   gawk \
   gcc-multilib \
   git \
@@ -29,13 +34,27 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
   iputils-ping \
   libegl1-mesa \
   liblz4-tool \
+  libpython2.7-minimal \
+  libpython2.7-stdlib \
+  libpython3.6 \
+  libpython3.6-dev \
+  libpython3.6-minimal \
+  libpython3.6-stdlib \
   libsdl1.2-dev \
+  libzstd1 \
+  libzstd-dev \
+  linux-libc-dev \
   locales \
+  login \
   mesa-common-dev \
+  mount \
   nano \
+  networkd-dispatcher \
+  passwd \
   pwgen \
   pylint3 \
   python \
+  python2.7 \
   python3 \
   python3-git \
   python3-jinja2 \
@@ -54,6 +73,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
   xterm \
   xxd \
   xz-utils \
+  zlib1g \
+  zlib1g-dev \
   zstd \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 

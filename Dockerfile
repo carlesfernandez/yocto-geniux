@@ -3,8 +3,8 @@
 #
 # Docker image to build Geniux images.
 
-FROM yocto-geniux-base:v1.4
-LABEL version="2.3" description="Geniux builder" maintainer="carles.fernandez@cttc.es"
+FROM yocto-geniux-base:v1.5
+LABEL version="2.4" description="Geniux builder" maintainer="carles.fernandez@cttc.es"
 
 ARG version=dunfell
 ARG manifest_date=latest
@@ -15,11 +15,6 @@ ARG host_gid=1001
 # Set up a local mirror
 ENV LOCAL_MIRROR /source_mirror/sources/$version
 RUN mkdir -p $LOCAL_MIRROR
-
-# Set the locale to en_US.UTF-8, because the Yocto build fails without any locale set.
-RUN locale-gen en_US.UTF-8 && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
 
 # Add user "geniux" to sudoers. Then, the user can install Linux packages in the container.
 ENV USER_NAME geniux
