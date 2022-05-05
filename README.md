@@ -300,6 +300,23 @@ Now, when doing `exit` from the container, the build artifacts will be at the
 `./output` folder you created in your machine, so _outside_ the container. The
 container itself will be erased at exit.
 
+## Note for Xilinx's boards
+
+Releases of Xilinx's Embedded Design Tools are tightly coupled to a specific
+release of the Yocto Project. This Table shows that correspondence between
+versions:
+
+| Xilinx release | Yocto version | Linux kernel | Geniux version | Geniux release | Tested boards (`MACHINE`) |
+|:-:|:-:|:-:|:-:|---|---|
+| v2022.1 | Honister | 5.15 | Honister | **`latest`**, `22.02` | `zedboard-zynq7`, `zcu102`, **`zcu208`** |
+| v2021.2 | Gatesgarth | 5.10 | Gatesgarth | **`latest`**, `22.02`, `21.08` | `zedboard-zynq7`, **`zcu102`** |
+| v2020.3 | Zeus | 5.4 | Zeus | `latest`, `22.02`, `21.08`, ... | `zedboard-zynq7`, `zcu102` |
+| v2019.2 | Thud | 4.19 | Thud | `latest`, `22.02`, `21.08`, ... | `zedboard-zynq7`, `zcu102` |
+| v2018.3 | Rocko | 4.14 | Rocko | `latest`, `22.02`, `21.08,`, ... | `zedboard-zynq7`, `zcu102` |
+
+Other boards might work as well, or require minor (but maybe non-obvious)
+modifications in the configuration files.
+
 ## Copyright and License
 
 Copyright: &copy; 2020-2022 Carles Fern&aacute;ndez-Prades,
