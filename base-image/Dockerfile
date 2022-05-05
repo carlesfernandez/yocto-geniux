@@ -33,6 +33,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
   iproute2 \
   iputils-ping \
   libegl1-mesa \
+  liblzma5 \
   liblz4-tool \
   libpython2.7-minimal \
   libpython2.7-stdlib \
@@ -66,6 +67,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
   sudo \
   tar \
   texinfo \
+  ubuntu-keyring \
   unzip \
   util-linux \
   wget \
@@ -98,3 +100,8 @@ RUN add-apt-repository \
 # Install the repo tool to handle git submodules (meta layers) comfortably.
 ADD https://storage.googleapis.com/git-repo-downloads/repo /usr/local/bin/
 RUN chmod 755 /usr/local/bin/repo
+
+# Set the locale to en_US.UTF-8, because the Yocto build fails without any locale set.
+RUN locale-gen en_US.UTF-8 && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
