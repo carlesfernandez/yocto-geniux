@@ -28,4 +28,4 @@ message: "If you use this software, please cite it using the metadata from this 
 repository-code: "https://github.com/carlesfernandez/yocto-geniux"
 title: "Yocto Geniux builder"
 type: software
-version: "2.5"
+version: "2.4"
