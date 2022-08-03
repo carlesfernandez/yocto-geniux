@@ -14,3 +14,12 @@ jobs:
       uses: docker://fsfe/reuse
       with:
         args: lint
+
+  shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: install dependencies
+      run: sudo apt install shellcheck
+    - name: check script
+      run: shellcheck geniux-builder.sh
