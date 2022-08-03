@@ -9,7 +9,7 @@ authors:
     given-names: Carles
     orcid: "https://orcid.org/0000-0002-9201-7007"
 cff-version: "1.2.0"
-date-released: "2022-06-30"
+date-released: "2022-08-03"
 identifiers:
   - description: "The concept DOI of the work. This is a DOI always pointing to the latest stable release."
     type: doi
@@ -28,4 +28,4 @@ message: "If you use this software, please cite it using the metadata from this 
 repository-code: "https://github.com/carlesfernandez/yocto-geniux"
 title: "Yocto Geniux builder"
 type: software
-version: "2.4"
+version: "2.5"
