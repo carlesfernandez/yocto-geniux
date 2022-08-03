@@ -37,7 +37,7 @@ if [[ ( $4 == "--image-only") || $4 == "-i" ]]
     then
         IMAGE_ONLY=1
     else
-        if [[ !( $4 == "") ]]
+        if [[ ! ( $4 == "") ]]
             then
                 if [ $# -gt 4 ]
                     then
@@ -94,7 +94,7 @@ fi
 MIRROR_PATH=$GENIUX_MIRROR_PATH
 STORE_PATH=$GENIUX_STORE_PATH
 
-if [ $STORE_PATH ]
+if [ "$STORE_PATH" ]
     then
         STORE_REQUIRES_SUDO=$GENIUX_STORE_REQUIRES_SUDO
 fi
@@ -106,19 +106,19 @@ if [ $# -gt 2 ]
 fi
 
 echo -e "This script will build the Geniux distribution, version $GENIUX_VERSION-$GENIUX_MANIFEST_DATE, for machine(s): $ListOfMachines"
-if [ $STORE_PATH ]
+if [ "$STORE_PATH" ]
     then
         echo -e "Products will be stored at $STORE_PATH/$GENIUX_VERSION/$GENIUX_MANIFEST_DATE"
 fi
 
-if [ $MIRROR_PATH ]
+if [ "$MIRROR_PATH" ]
     then
         echo -e "The source files mirror will point to $MIRROR_PATH/sources/$GENIUX_VERSION\n"
 fi
 
-if [ $STORE_REQUIRES_SUDO ]
+if [ "$STORE_REQUIRES_SUDO" ]
     then
-        read -s -p "Enter Password for sudo: " sudoPW
+        read -r -s -p "Enter Password for sudo: " sudoPW
         echo -e "\n"
 fi
 
@@ -127,71 +127,72 @@ BASEDIR=$PWD
 YOCTO_GENIUX_BASE_IMAGE="yocto-geniux-base:v1.5"
 if test -z "$(docker images -q $YOCTO_GENIUX_BASE_IMAGE)"
    then
-       cd base-image
+       cd base-image || exit
        echo -e "Yocto Geniux base image does not exist. Building..."
        docker build --tag "$YOCTO_GENIUX_BASE_IMAGE" .
        cd ..
 fi
 
-mkdir -p $GENIUX_VERSION
+mkdir -p "$GENIUX_VERSION"
 
 if [[ "$OSTYPE" == "darwin"* ]]
      then
-         SETUID=""
+         SETUID_AUX=""
      else
-         SETUID="--build-arg \"host_uid=$(id -u)\" --build-arg \"host_gid=$(id -g)\""
+         SETUID_AUX="--build-arg \"host_uid=$(id -u)\" --build-arg \"host_gid=$(id -g)\""
 fi
+IFS=" " read -r -a SETUID <<< "$SETUID_AUX"
 
 for machine in $ListOfMachines; do
     echo -e "Building Geniux $GENIUX_VERSION-$GENIUX_MANIFEST_DATE for machine $machine...\n"
-    cd $BASEDIR/$GENIUX_VERSION
-    mkdir -p $GENIUX_VERSION-$machine && cd $GENIUX_VERSION-$machine && cp ../../Dockerfile ./
+    cd "$BASEDIR"/"$GENIUX_VERSION" || exit
+    mkdir -p "$GENIUX_VERSION"-"$machine" && cd "$GENIUX_VERSION"-"$machine" && cp ../../Dockerfile ./
     docker build --no-cache \
       --build-arg "version=$GENIUX_VERSION" \
       --build-arg "manifest_date=$GENIUX_MANIFEST_DATE" \
       --build-arg "MACHINE=$machine" \
-      $SETUID \
+      "${SETUID[@]}" \
       --tag "geniux-$GENIUX_VERSION:$GENIUX_MANIFEST_DATE.$machine" .
     if [ ! $IMAGE_ONLY ]
         then
-            mkdir -p output_$machine
-            if [ $MIRROR_PATH ]
+            mkdir -p output_"$machine"
+            if [ "$MIRROR_PATH" ]
                 then
-                    docker run -it --rm -v $PWD/output_$machine:/home/geniux/yocto/output \
-                    -v $MIRROR_PATH/sources/$GENIUX_VERSION:/source_mirror/sources/$GENIUX_VERSION \
+                    docker run -it --rm -v "$PWD"/output_"$machine":/home/geniux/yocto/output \
+                    -v "$MIRROR_PATH"/sources/"$GENIUX_VERSION":/source_mirror/sources/"$GENIUX_VERSION" \
                     --privileged=true \
-                    geniux-$GENIUX_VERSION:$GENIUX_MANIFEST_DATE.$machine
+                    geniux-"$GENIUX_VERSION":$GENIUX_MANIFEST_DATE."$machine"
                 else
-                    docker run -it --rm -v $PWD/output_$machine:/home/geniux/yocto/output \
+                    docker run -it --rm -v "$PWD"/output_"$machine":/home/geniux/yocto/output \
                     --privileged=true \
-                    geniux-$GENIUX_VERSION:$GENIUX_MANIFEST_DATE.$machine
+                    geniux-"$GENIUX_VERSION":$GENIUX_MANIFEST_DATE."$machine"
             fi
-            cd output_$machine/images
-            if [ $STORE_REQUIRES_SUDO ]
+            cd output_"$machine"/images || exit
+            if [ "$STORE_REQUIRES_SUDO" ]
                 then
-                    echo $sudoPW | sudo -S zip --symlinks -r image-$GENIUX_VERSION-$machine.zip $machine
-                    echo $sudoPW | sudo -S mkdir -p $STORE_PATH/$GENIUX_VERSION/$GENIUX_MANIFEST_DATE/images/$machine
-                    echo $sudoPW | sudo -S cp image-$GENIUX_VERSION-$machine.zip $STORE_PATH/$GENIUX_VERSION/$GENIUX_MANIFEST_DATE/images/$machine
+                    echo "$sudoPW" | sudo -S zip --symlinks -r image-"$GENIUX_VERSION"-"$machine".zip "$machine"
+                    echo "$sudoPW" | sudo -S mkdir -p "$STORE_PATH"/"$GENIUX_VERSION"/$GENIUX_MANIFEST_DATE/images/"$machine"
+                    echo "$sudoPW" | sudo -S cp image-"$GENIUX_VERSION"-"$machine".zip "$STORE_PATH"/"$GENIUX_VERSION"/$GENIUX_MANIFEST_DATE/images/"$machine"
                     cd ..
-                    echo $sudoPW | sudo -S mkdir -p $STORE_PATH/$GENIUX_VERSION/$GENIUX_MANIFEST_DATE/sdk
-                    echo $sudoPW | sudo -S cp $PWD/sdk/* $STORE_PATH/$GENIUX_VERSION/$GENIUX_MANIFEST_DATE/sdk
+                    echo "$sudoPW" | sudo -S mkdir -p "$STORE_PATH"/"$GENIUX_VERSION"/$GENIUX_MANIFEST_DATE/sdk
+                    echo "$sudoPW" | sudo -S cp "$PWD"/sdk/* "$STORE_PATH"/"$GENIUX_VERSION"/$GENIUX_MANIFEST_DATE/sdk
                     cd ../..
                 else
-                    if [ $STORE_PATH ]
+                    if [ "$STORE_PATH" ]
                         then
-                            zip --symlinks -r image-$GENIUX_VERSION-$machine.zip $machine
-                            mkdir -p $STORE_PATH/$GENIUX_VERSION/$GENIUX_MANIFEST_DATE/images/$machine
-                            cp image-$GENIUX_VERSION-$machine.zip $STORE_PATH/$GENIUX_VERSION/$GENIUX_MANIFEST_DATE/images/$machine
+                            zip --symlinks -r image-"$GENIUX_VERSION"-"$machine".zip "$machine"
+                            mkdir -p "$STORE_PATH"/"$GENIUX_VERSION"/$GENIUX_MANIFEST_DATE/images/"$machine"
+                            cp image-"$GENIUX_VERSION"-"$machine".zip "$STORE_PATH"/"$GENIUX_VERSION"/$GENIUX_MANIFEST_DATE/images/"$machine"
                             cd ..
-                            mkdir -p $STORE_PATH/$GENIUX_VERSION/$GENIUX_MANIFEST_DATE/sdk
-                            cp $PWD/sdk/* $STORE_PATH/$GENIUX_VERSION/$GENIUX_MANIFEST_DATE/sdk
+                            mkdir -p "$STORE_PATH"/"$GENIUX_VERSION"/$GENIUX_MANIFEST_DATE/sdk
+                            cp "$PWD"/sdk/* "$STORE_PATH/$GENIUX_VERSION/$GENIUX_MANIFEST_DATE/sdk"
                             cd ../..
                         else
                             # Do not store products, just leave them at $GENIUX_VERSION/output_$machine
-                            cd $BASEDIR/$GENIUX_VERSION
+                            cd "$BASEDIR/$GENIUX_VERSION" || exit
                     fi
             fi
     fi
 done
 
-cd $BASEDIR
+cd "$BASEDIR" || return
