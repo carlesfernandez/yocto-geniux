@@ -67,7 +67,7 @@ Options:
  version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell,
            gatesgarth, hardknott, honister, kirkstone. Default: dunfell
            Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr
- manifest  Geniux version manifest: 22.06, 21.02, 21.08, 22.02, latest. Default: latest
+ manifest  Geniux version manifest: 21.02, 21.08, 22.02, 22.06, latest. Default: latest
            Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags
  machine   Specify your (list of) MACHINE here. By default, zedboard-zynq7 and raspberrypi3 are built.
            If more than one, surround them with quotes, e.g.: "raspberrypi4-64 intel-corei7-64"
