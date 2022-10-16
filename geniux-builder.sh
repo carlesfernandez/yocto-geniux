@@ -9,7 +9,7 @@ display_usage() {
     echo -e "\nUsage:\n./geniux-builder.sh [version] [manifest] [machine] (--image-only / -i)\n"
     echo -e "Options:"
     echo -e " version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell,"
-    echo -e "           gatesgarth, hardknott, honister, kirkstone. Default: dunfell"
+    echo -e "           gatesgarth, hardknott, honister, kirkstone, langdale. Default: dunfell"
     echo -e "           Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr"
     echo -e " manifest  Geniux version manifest: 21.02, 21.08, 22.02, 22.06, latest. Default: latest"
     echo -e "           Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags"
@@ -143,6 +143,16 @@ if [[ "$OSTYPE" == "darwin"* ]]
 fi
 IFS=" " read -r -a SETUID <<< "$SETUID_AUX"
 
+if [[ $GENIUX_VERSION == "rocko" || $GENIUX_VERSION == "sumo" || $GENIUX_VERSION == "thud" || \
+    $GENIUX_VERSION == "warrior" || $GENIUX_VERSION == "zeus" || $GENIUX_VERSION == "dunfell" || \
+    $GENIUX_VERSION == "gatesgarth" || $GENIUX_VERSION == "hardknott"|| $GENIUX_VERSION == "honister" || \
+    $GENIUX_VERSION == "kirkstone" ]]
+    then
+        NEW_TEMPLATECONF=""
+    else
+        NEW_TEMPLATECONF="--build-arg BUILD_NEW_TEMPLATE=1"
+fi
+
 for machine in $ListOfMachines; do
     echo -e "Building Geniux $GENIUX_VERSION-$GENIUX_MANIFEST_DATE for machine $machine...\n"
     cd "$BASEDIR"/"$GENIUX_VERSION" || exit
@@ -151,6 +161,7 @@ for machine in $ListOfMachines; do
       --build-arg "version=$GENIUX_VERSION" \
       --build-arg "manifest_date=$GENIUX_MANIFEST_DATE" \
       --build-arg "MACHINE=$machine" \
+      $NEW_TEMPLATECONF \
       "${SETUID[@]}" \
       --tag "geniux-$GENIUX_VERSION:$GENIUX_MANIFEST_DATE.$machine" .
     if [ ! $IMAGE_ONLY ]
