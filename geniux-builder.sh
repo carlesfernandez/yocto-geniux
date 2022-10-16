@@ -152,6 +152,7 @@ if [[ $GENIUX_VERSION == "rocko" || $GENIUX_VERSION == "sumo" || $GENIUX_VERSION
     else
         NEW_TEMPLATECONF="--build-arg BUILD_NEW_TEMPLATE=1"
 fi
+IFS=" " read -r -a TEMPLATECONF <<< "$NEW_TEMPLATECONF"
 
 for machine in $ListOfMachines; do
     echo -e "Building Geniux $GENIUX_VERSION-$GENIUX_MANIFEST_DATE for machine $machine...\n"
@@ -161,7 +162,7 @@ for machine in $ListOfMachines; do
       --build-arg "version=$GENIUX_VERSION" \
       --build-arg "manifest_date=$GENIUX_MANIFEST_DATE" \
       --build-arg "MACHINE=$machine" \
-      $NEW_TEMPLATECONF \
+      "${TEMPLATECONF[@]}" \
       "${SETUID[@]}" \
       --tag "geniux-$GENIUX_VERSION:$GENIUX_MANIFEST_DATE.$machine" .
     if [ ! $IMAGE_ONLY ]
