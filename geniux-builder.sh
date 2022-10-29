@@ -8,8 +8,9 @@ display_usage() {
     echo -e "This script builds and stores Geniux images."
     echo -e "\nUsage:\n./geniux-builder.sh [version] [manifest] [machine] (--image-only / -i)\n"
     echo -e "Options:"
-    echo -e " version   Geniux version: rocko, sumo, thud, warrior, zeus, dunfell,"
-    echo -e "           gatesgarth, hardknott, honister, kirkstone, langdale. Default: dunfell"
+    echo -e " version   Geniux version (from oldest to most recent):"
+    echo -e "             rocko, sumo, thud, warrior, zeus, dunfell,"
+    echo -e "             gatesgarth, hardknott, honister, kirkstone, langdale. Default: dunfell"
     echo -e "           Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr"
     echo -e " manifest  Geniux version manifest: 21.02, 21.08, 22.02, 22.06, latest. Default: latest"
     echo -e "           Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags"
@@ -26,6 +27,12 @@ display_usage() {
     echo -e "                             You will be asked only once at the beginning. The password will not be revealed."
     echo -e "                             e.g.: 'export GENIUX_STORE_REQUIRES_SUDO=1'"
 }
+
+YOCTO_GENIUX_BASE_IMAGE_VERSION="1.6"
+YOCTO_GENIUX_BASE_IMAGE="yocto-geniux-base:v$YOCTO_GENIUX_BASE_IMAGE_VERSION"
+BASEDIR=$PWD
+MIRROR_PATH=$GENIUX_MIRROR_PATH
+STORE_PATH=$GENIUX_STORE_PATH
 
 if [[ ( $1 == "--help") || $1 == "-h" ]]
     then
@@ -91,9 +98,6 @@ if [[ $GENIUX_MANIFEST_DATE == "21.06" ]]
         fi
 fi
 
-MIRROR_PATH=$GENIUX_MIRROR_PATH
-STORE_PATH=$GENIUX_STORE_PATH
-
 if [ "$STORE_PATH" ]
     then
         STORE_REQUIRES_SUDO=$GENIUX_STORE_REQUIRES_SUDO
@@ -122,13 +126,10 @@ if [ "$STORE_REQUIRES_SUDO" ]
         echo -e "\n"
 fi
 
-BASEDIR=$PWD
-
-YOCTO_GENIUX_BASE_IMAGE="yocto-geniux-base:v1.5"
 if test -z "$(docker images -q $YOCTO_GENIUX_BASE_IMAGE)"
    then
        cd base-image || exit
-       echo -e "Yocto Geniux base image does not exist. Building..."
+       echo -e "Yocto Geniux base image v$YOCTO_GENIUX_BASE_IMAGE_VERSION does not exist. Building ..."
        docker build --tag "$YOCTO_GENIUX_BASE_IMAGE" .
        cd ..
 fi
@@ -162,8 +163,7 @@ for machine in $ListOfMachines; do
       --build-arg "version=$GENIUX_VERSION" \
       --build-arg "manifest_date=$GENIUX_MANIFEST_DATE" \
       --build-arg "MACHINE=$machine" \
-      "${TEMPLATECONF[@]}" \
-      "${SETUID[@]}" \
+      "${TEMPLATECONF[@]}" "${SETUID[@]}" \
       --tag "geniux-$GENIUX_VERSION:$GENIUX_MANIFEST_DATE.$machine" .
     if [ ! $IMAGE_ONLY ]
         then
