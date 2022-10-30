@@ -106,6 +106,3 @@ ENV LC_ALL en_US.UTF-8
 # Install the repo tool to handle git submodules (meta layers) comfortably.
 ADD https://storage.googleapis.com/git-repo-downloads/repo /usr/local/bin/
 RUN chmod 777 /usr/local/bin/repo
-
-# Force git to use https:// instead of git:// for GitHub
-RUN git config --global url."https://github.com".insteadOf git://github.com

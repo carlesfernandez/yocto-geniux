@@ -44,6 +44,9 @@ RUN mkdir -p $BUILD_INPUT_DIR $BUILD_OUTPUT_DIR
 
 RUN sudo usermod -aG docker $USER_NAME && newgrp docker
 
+# Force git to use https:// instead of git:// for GitHub
+RUN git config --global url."https://github.com".insteadOf git://github.com
+
 WORKDIR $BUILD_INPUT_DIR
 
 RUN if [ "$manifest_date" = "latest" ] ; then \
