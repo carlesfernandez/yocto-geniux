@@ -34,6 +34,10 @@ RUN groupadd -g $host_gid $USER_NAME && useradd -g $host_gid -m -s /bin/bash -u 
 # Always get latest packages
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y upgrade && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Install the repo tool to handle git submodules (meta layers) comfortably.
+ADD https://storage.googleapis.com/git-repo-downloads/repo /usr/local/bin/
+RUN chmod 777 /usr/local/bin/repo
+
 # Perform the Yocto build as user geniux (not as root).
 # By default, docker runs as root. However, Yocto builds should not be run as
 # root, but as a normal user. Hence, we switch to the newly created user geniux.
