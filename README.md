@@ -312,13 +312,13 @@ Releases of Xilinx's Embedded Design Tools are tightly coupled to a specific
 [Yocto Project release](https://wiki.yoctoproject.org/wiki/Releases). This table
 shows that correspondence between versions:
 
-| Xilinx release | Yocto codename | Linux kernel | Geniux version | Geniux manifest                             | Tested boards (`MACHINE`)                              |
-| :------------: | :------------: | :----------: | :------------: | ------------------------------------------- | ------------------------------------------------------ |
-|    v2022.1     |    Honister    |     5.15     |    Honister    | **`latest`**, **`22.06`**, `22.02`          | `zedboard-zynq7`, `zcu102-zynqmp`, **`zcu208-zynqmp`** |
-|    v2021.2     |   Gatesgarth   |     5.10     |   Gatesgarth   | **`latest`**, **`22.06`**, `22.02`, `21.08` | `zedboard-zynq7`, **`zcu102-zynqmp`**                  |
-|    v2020.3     |      Zeus      |     5.4      |      Zeus      | `latest`, `22.06`, `22.02`, `21.08`, ...    | `zedboard-zynq7`, `zcu102-zynqmp`                      |
-|    v2019.2     |      Thud      |     4.19     |      Thud      | `latest`, `22.06`, `22.02`, `21.08`, ...    | `zedboard-zynq7`, `zcu102-zynqmp`                      |
-|    v2018.3     |     Rocko      |     4.14     |     Rocko      | `latest`, `22.06`, `22.02`, `21.08,`, ...   | `zedboard-zynq7`, `zcu102-zynqmp`                      |
+| Xilinx release | Yocto codename | Linux kernel | Geniux version | Geniux manifest                           | Tested boards (`MACHINE`)                                         |
+| :------------: | :------------: | :----------: | :------------: | ----------------------------------------- | ----------------------------------------------------------------- |
+|    v2022.2     |    Honister    |     5.15     |    Honister    | `latest`, `22.06`, ...                    | `zedboard-zynq7`, `zc706-zynq7`, `zcu102-zynqmp`, `zcu208-zynqmp` |
+|    v2021.2     |   Gatesgarth   |     5.10     |   Gatesgarth   | `latest`, `22.06`, ...                    | `zedboard-zynq7`, `zc706-zynq7`, `zcu102-zynqmp`                  |
+|    v2020.3     |      Zeus      |     5.4      |      Zeus      | `latest`, `22.06`, `22.02`, `21.08`, ...  | `zedboard-zynq7`, `zcu102-zynqmp`                                 |
+|    v2019.2     |      Thud      |     4.19     |      Thud      | `latest`, `22.06`, `22.02`, `21.08`, ...  | `zedboard-zynq7`, `zcu102-zynqmp`                                 |
+|    v2018.3     |     Rocko      |     4.14     |     Rocko      | `latest`, `22.06`, `22.02`, `21.08,`, ... | `zedboard-zynq7`, `zcu102-zynqmp`                                 |
 
 Other boards might work as well, or require minor (but maybe non-obvious)
 modifications in the configuration files.
