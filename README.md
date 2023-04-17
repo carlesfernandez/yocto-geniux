@@ -68,7 +68,7 @@ Options:
              rocko, sumo, thud, warrior, zeus, dunfell,
              gatesgarth, hardknott, honister, kirkstone, langdale. Default: dunfell
            Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr
- manifest  Geniux version manifest: 21.02, 21.08, 22.02, 22.06, latest. Default: latest
+ manifest  Geniux version manifest: 21.02, 21.08, 22.02, 22.06, 23.04, latest. Default: latest
            Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags
  machine   Specify your (list of) MACHINE here. By default, zedboard-zynq7 and raspberrypi3 are built.
            If more than one, surround them with quotes, e.g.: "raspberrypi4-64 intel-corei7-64"
@@ -312,13 +312,13 @@ Releases of Xilinx's Embedded Design Tools are tightly coupled to a specific
 [Yocto Project release](https://wiki.yoctoproject.org/wiki/Releases). This table
 shows that correspondence between versions:
 
-| Xilinx release | Yocto codename | Linux kernel | Geniux version | Geniux manifest                           | Tested boards (`MACHINE`)                                         |
-| :------------: | :------------: | :----------: | :------------: | ----------------------------------------- | ----------------------------------------------------------------- |
-|    v2022.2     |    Honister    |     5.15     |    Honister    | `latest`, `22.06`, ...                    | `zedboard-zynq7`, `zc706-zynq7`, `zcu102-zynqmp`, `zcu208-zynqmp` |
-|    v2021.2     |   Gatesgarth   |     5.10     |   Gatesgarth   | `latest`, `22.06`, ...                    | `zedboard-zynq7`, `zc706-zynq7`, `zcu102-zynqmp`                  |
-|    v2020.3     |      Zeus      |     5.4      |      Zeus      | `latest`, `22.06`, `22.02`, `21.08`, ...  | `zedboard-zynq7`, `zcu102-zynqmp`                                 |
-|    v2019.2     |      Thud      |     4.19     |      Thud      | `latest`, `22.06`, `22.02`, `21.08`, ...  | `zedboard-zynq7`, `zcu102-zynqmp`                                 |
-|    v2018.3     |     Rocko      |     4.14     |     Rocko      | `latest`, `22.06`, `22.02`, `21.08,`, ... | `zedboard-zynq7`, `zcu102-zynqmp`                                 |
+| Xilinx release | Yocto codename | Linux kernel | Geniux version | Geniux manifest                          | Tested boards (`MACHINE`)                                         |
+| :------------: | :------------: | :----------: | :------------: | ---------------------------------------- | ----------------------------------------------------------------- |
+|    v2022.2     |    Honister    |     5.15     |    Honister    | `latest`, `23.04`, `22.06`.              | `zedboard-zynq7`, `zc706-zynq7`, `zcu102-zynqmp`, `zcu208-zynqmp` |
+|    v2021.2     |   Gatesgarth   |     5.10     |   Gatesgarth   | `latest`, `23.04`, `22.06`.              | `zedboard-zynq7`, `zc706-zynq7`, `zcu102-zynqmp`                  |
+|    v2020.3     |      Zeus      |     5.4      |      Zeus      | `latest`, `23.04`, `22.06`, `22.02`, ... | `zedboard-zynq7`, `zcu102-zynqmp`                                 |
+|    v2019.2     |      Thud      |     4.19     |      Thud      | `latest`, `23.04`, `22.06`, `22.02`, ... | `zedboard-zynq7`, `zcu102-zynqmp`                                 |
+|    v2018.3     |     Rocko      |     4.14     |     Rocko      | `latest`, `23.04`, `22.06`, `22.02`, ... | `zedboard-zynq7`, `zcu102-zynqmp`                                 |
 
 Other boards might work as well, or require minor (but maybe non-obvious)
 modifications in the configuration files.
