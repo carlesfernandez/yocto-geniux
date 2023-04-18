@@ -10,7 +10,7 @@ display_usage() {
     echo -e "Options:"
     echo -e " version   Geniux version (from oldest to most recent):"
     echo -e "             rocko, sumo, thud, warrior, zeus, dunfell,"
-    echo -e "             gatesgarth, hardknott, honister, kirkstone, langdale. Default: dunfell"
+    echo -e "             gatesgarth, hardknott, honister, kirkstone, langdale, mickledore. Default: dunfell"
     echo -e "           Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr"
     echo -e " manifest  Geniux version manifest: 21.02, 21.08, 22.02, 22.06, 23.04, latest. Default: latest"
     echo -e "           Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags"

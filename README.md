@@ -66,7 +66,7 @@ Usage:
 Options:
  version   Geniux version (from oldest to most recent):
              rocko, sumo, thud, warrior, zeus, dunfell,
-             gatesgarth, hardknott, honister, kirkstone, langdale. Default: dunfell
+             gatesgarth, hardknott, honister, kirkstone, langdale, mickledore. Default: dunfell
            Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr
  manifest  Geniux version manifest: 21.02, 21.08, 22.02, 22.06, 23.04, latest. Default: latest
            Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags
