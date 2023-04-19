@@ -42,6 +42,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
   libpython3.8-minimal \
   libpython3.8-stdlib \
   libsdl1.2-dev \
+  libtinfo5 \
   libzstd1 \
   libzstd-dev \
   linux-libc-dev \
