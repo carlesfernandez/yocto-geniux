@@ -5,7 +5,7 @@
 
 ARG base_image_version=1.6
 FROM yocto-geniux-base:v${base_image_version}
-LABEL version="2.6" description="Geniux builder" maintainer="carles.fernandez@cttc.es"
+LABEL version="3.0" description="Geniux builder" maintainer="carles.fernandez@cttc.es"
 
 ARG version=dunfell
 ARG manifest_date=latest
