@@ -10,6 +10,7 @@ authors:
     orcid: "https://orcid.org/0000-0002-9201-7007"
 cff-version: "1.2.0"
 date-released: "2023-04-20"
+doi: 10.5281/zenodo.7848142
 identifiers:
   - description: "The concept DOI of the work. This is a DOI always pointing to the latest stable release."
     type: doi
