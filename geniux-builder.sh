@@ -154,10 +154,10 @@ fi
 mkdir -p "$GENIUX_VERSION"
 
 if [[ "$OSTYPE" == "darwin"* ]]
-     then
-         SETUID_AUX=""
-     else
-         SETUID_AUX="--build-arg \"host_uid=$(id -u)\" --build-arg \"host_gid=$(id -g)\""
+    then
+        SETUID_AUX=""
+    else
+        SETUID_AUX="--build-arg \"host_uid=$(id -u)\" --build-arg \"host_gid=$(id -g)\""
 fi
 IFS=" " read -r -a SETUID <<< "$SETUID_AUX"
 
@@ -177,12 +177,12 @@ for machine in $ListOfMachines; do
     cd "$BASEDIR"/"$GENIUX_VERSION" || exit
     mkdir -p "$GENIUX_VERSION"-"$machine" && cd "$GENIUX_VERSION"-"$machine" && cp ../../Dockerfile ./
     docker build --no-cache \
-      --build-arg "version=$GENIUX_VERSION" \
-      --build-arg "manifest_date=$GENIUX_MANIFEST_DATE" \
-      --build-arg "MACHINE=$machine" \
-      --build-arg "base_image_version=$YOCTO_GENIUX_BASE_IMAGE_VERSION" \
-      "${TEMPLATECONF[@]}" "${SETUID[@]}" \
-      --tag "geniux-$GENIUX_VERSION:$GENIUX_MANIFEST_DATE.$machine" .
+        --build-arg "version=$GENIUX_VERSION" \
+        --build-arg "manifest_date=$GENIUX_MANIFEST_DATE" \
+        --build-arg "MACHINE=$machine" \
+        --build-arg "base_image_version=$YOCTO_GENIUX_BASE_IMAGE_VERSION" \
+        "${TEMPLATECONF[@]}" "${SETUID[@]}" \
+        --tag "geniux-$GENIUX_VERSION:$GENIUX_MANIFEST_DATE.$machine" .
     if [ ! "$IMAGE_ONLY" ]
         then
             mkdir -p output_"$machine"
