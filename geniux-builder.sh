@@ -38,7 +38,7 @@ if [[ $GENIUX_VERSION == "rocko" || $GENIUX_VERSION == "sumo" || $GENIUX_VERSION
     then
         YOCTO_GENIUX_BASE_IMAGE_VERSION="1.7"
     else
-        YOCTO_GENIUX_BASE_IMAGE_VERSION="2.0"
+        YOCTO_GENIUX_BASE_IMAGE_VERSION="2.1"
 fi
 
 YOCTO_GENIUX_BASE_IMAGE="yocto-geniux-base:v$YOCTO_GENIUX_BASE_IMAGE_VERSION"
@@ -146,7 +146,7 @@ if test -z "$(docker images -q $YOCTO_GENIUX_BASE_IMAGE)"
             then
                 docker build --tag "$YOCTO_GENIUX_BASE_IMAGE" .
             else
-                docker build -f Dockerfile20 --tag "$YOCTO_GENIUX_BASE_IMAGE" .
+                docker build -f Dockerfile2 --tag "$YOCTO_GENIUX_BASE_IMAGE" .
         fi
         cd ..
 fi

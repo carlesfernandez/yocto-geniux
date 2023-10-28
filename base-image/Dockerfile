@@ -99,10 +99,11 @@ RUN add-apt-repository \
   && DEBIAN_FRONTEND=noninteractive apt-get -y upgrade \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Build python 3.11, required by repo
+# Build and install Python 3.11, required by repo
 RUN wget https://www.python.org/ftp/python/3.11.4/Python-3.11.4.tgz \
-  && tar -xf Python-3.11.*.tgz && cd Python-3.11.*/  \
-  && ./configure --enable-optimizations && make && make altinstall && rm -rf *
+  && tar -xf Python-3.11.*.tgz && cd Python-3.11.*/ \
+  && ./configure --enable-optimizations && make && make altinstall \
+  && cd .. && rm Python-3.11.*.tgz && rm -rf Python-3.11.*/
 
 # By default, Ubuntu uses dash as an alias for sh. Dash does not support the
 # source command needed for setting up Yocto build environments. Use bash as an
