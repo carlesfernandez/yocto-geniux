@@ -1,10 +1,10 @@
-# SPDX-FileCopyrightText: 2022, Carles Fernandez-Prades <carles.fernandez@cttc.es>
+# SPDX-FileCopyrightText: 2022-2023, Carles Fernandez-Prades <carles.fernandez@cttc.es>
 # SPDX-License-Identifier: MIT
 #
 # Yocto Geniux base image to help building Geniux.
 
 FROM ubuntu:18.04
-LABEL version="1.6" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
+LABEL version="1.7" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
 
 # Install all Linux packages required for Yocto builds, plus other packages used
 # in this file below, and in the interactive mode
@@ -32,16 +32,24 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
   gzip \
   iproute2 \
   iputils-ping \
+  libbz2-dev \
   libegl1-mesa \
+  libffi-dev \
+  libgdbm-dev \
   liblzma5 \
   liblz4-tool \
+  libncurses5-dev \
+  libnss3-dev \
   libpython2.7-minimal \
   libpython2.7-stdlib \
   libpython3.6 \
   libpython3.6-dev \
   libpython3.6-minimal \
   libpython3.6-stdlib \
+  libreadline-dev \
   libsdl1.2-dev \
+  libsqlite3-dev \
+  libssl-dev \
   libzstd1 \
   libzstd-dev \
   linux-libc-dev \
@@ -52,6 +60,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
   nano \
   networkd-dispatcher \
   passwd \
+  pkg-config \
   pwgen \
   pylint3 \
   python \
@@ -89,6 +98,11 @@ RUN add-apt-repository \
   apt-get -y install docker-ce docker-ce-cli containerd.io \
   && DEBIAN_FRONTEND=noninteractive apt-get -y upgrade \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Build python 3.11, required by repo
+RUN wget https://www.python.org/ftp/python/3.11.4/Python-3.11.4.tgz \
+  && tar -xf Python-3.11.*.tgz && cd Python-3.11.*/  \
+  && ./configure --enable-optimizations && make && make altinstall && rm -rf *
 
 # By default, Ubuntu uses dash as an alias for sh. Dash does not support the
 # source command needed for setting up Yocto build environments. Use bash as an

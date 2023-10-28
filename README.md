@@ -4,7 +4,7 @@ SPDX-License-Identifier: MIT
 )
 
 [comment]: # (
-SPDX-FileCopyrightText: 2020-2022 Carles Fernandez-Prades <carles.fernandez@cttc.es>
+SPDX-FileCopyrightText: 2020-2023 Carles Fernandez-Prades <carles.fernandez@cttc.es>
 )
 <!-- prettier-ignore-end -->
 
@@ -260,7 +260,7 @@ executing the predefined commands.**
 Now, inside the container, prepare the building environment:
 
 ```
-$ repo sync   # Recommended if you are building the 'latest' manifest
+$ /usr/local/bin/python3.11 /usr/local/bin/repo sync   # Recommended if you are building the 'latest' manifest
 $ source ./oe-core/oe-init-build-env ./build ./bitbake
 ```
 
@@ -331,7 +331,7 @@ Foundation. This tool is not, in any way, endorsed by the Yocto Project or
 
 ## Copyright and License
 
-Copyright: &copy; 2020-2022 Carles Fern&aacute;ndez-Prades,
+Copyright: &copy; 2020-2023 Carles Fern&aacute;ndez-Prades,
 [CTTC](https://www.cttc.cat). All rights reserved.
 
 The content of this repository is released under the [MIT](./LICENSE) license.

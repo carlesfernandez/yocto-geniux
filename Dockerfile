@@ -3,7 +3,7 @@
 #
 # Docker image to build Geniux images.
 
-ARG base_image_version=1.6
+ARG base_image_version=1.7
 FROM yocto-geniux-base:v${base_image_version}
 LABEL version="3.0" description="Geniux builder" maintainer="carles.fernandez@cttc.es"
 
@@ -55,13 +55,13 @@ RUN git config --global url."https://github.com".insteadOf git://github.com
 WORKDIR $BUILD_INPUT_DIR
 
 RUN if [ "$manifest_date" = "latest" ] ; then \
-  repo init -u https://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b $version --repo-url=https://gerrit.googlesource.com/git-repo --repo-rev=stable ; \
+  /usr/local/bin/python3.11 /usr/local/bin/repo init -u https://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b $version --repo-url=https://gerrit.googlesource.com/git-repo --repo-rev=stable ; \
   else \
-  repo init -u https://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b refs/tags/$version-$manifest_date --repo-url=https://gerrit.googlesource.com/git-repo --repo-rev=stable ; \
+  /usr/local/bin/python3.11 /usr/local/bin/repo init -u https://github.com/carlesfernandez/oe-gnss-sdr-manifest.git -b refs/tags/$version-$manifest_date --repo-url=https://gerrit.googlesource.com/git-repo --repo-rev=stable ; \
   fi
 
 RUN sed -i -r 's/git\:/https\:/g' /home/$USER_NAME/yocto/input/.repo/manifests/default.xml
-RUN repo sync
+RUN /usr/local/bin/python3.11 /usr/local/bin/repo sync
 ENV MACHINE=$MACHINE
 ENV TEMPLATECONF=${BUILD_NEW_TEMPLATE:+$BUILD_INPUT_DIR/meta-gnss-sdr/conf/templates/default}
 ENV TEMPLATECONF=${TEMPLATECONF:-$BUILD_INPUT_DIR/meta-gnss-sdr/conf}
