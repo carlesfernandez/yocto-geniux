@@ -39,6 +39,9 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y upgrade && apt-g
 ADD https://storage.googleapis.com/git-repo-downloads/repo /usr/local/bin/
 RUN chmod 777 /usr/local/bin/repo
 
+# Remove hard limit in Docker ulimit
+RUN sed -i -r 's/ulimit \-Hn/ulimit \-n/g' /etc/init.d/docker
+
 # Perform the Yocto build as user geniux (not as root).
 # By default, docker runs as root. However, Yocto builds should not be run as
 # root, but as a normal user. Hence, we switch to the newly created user geniux.
