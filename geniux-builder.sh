@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # A script to build and store Geniux releases
-# SPDX-FileCopyrightText: 2020-2023, Carles Fernandez-Prades <carles.fernandez@cttc.es>
+# SPDX-FileCopyrightText: 2020-2024, Carles Fernandez-Prades <carles.fernandez@cttc.es>
 # SPDX-License-Identifier: MIT
 
 display_usage() {
@@ -12,7 +12,7 @@ display_usage() {
     echo -e "             rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth,"
     echo -e "             hardknott, honister, kirkstone, langdale, mickledore, nanbield. Default: dunfell"
     echo -e "           Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr"
-    echo -e " manifest  Geniux version manifest: 21.02, 21.08, 22.02, 22.06, 23.04, latest. Default: latest"
+    echo -e " manifest  Geniux version manifest: 21.02, 21.08, 22.02, 22.06, 23.04, 24.02, latest. Default: latest"
     echo -e "           Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags"
     echo -e " machine   Specify your (list of) MACHINE here. By default, zedboard-zynq7 and raspberrypi3 are built."
     echo -e "           If more than one, surround them with quotes, e.g.: \"raspberrypi4-64 intel-corei7-64\""

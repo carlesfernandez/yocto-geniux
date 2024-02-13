@@ -4,7 +4,7 @@ SPDX-License-Identifier: MIT
 )
 
 [comment]: # (
-SPDX-FileCopyrightText: 2020-2023 Carles Fernandez-Prades <carles.fernandez@cttc.es>
+SPDX-FileCopyrightText: 2020-2024 Carles Fernandez-Prades <carles.fernandez@cttc.es>
 )
 <!-- prettier-ignore-end -->
 
@@ -68,7 +68,7 @@ Options:
              rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth,
              hardknott, honister, kirkstone, langdale, mickledore, nanbield. Default: dunfell
            Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr
- manifest  Geniux version manifest: 21.02, 21.08, 22.02, 22.06, 23.04, latest. Default: latest
+ manifest  Geniux version manifest: 21.02, 21.08, 22.02, 22.06, 23.04, 24.02, latest. Default: latest
            Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags
  machine   Specify your (list of) MACHINE here. By default, zedboard-zynq7 and raspberrypi3 are built.
            If more than one, surround them with quotes, e.g.: "raspberrypi4-64 intel-corei7-64"
@@ -115,11 +115,11 @@ Examples of usage:
   $ ./geniux-builder.sh thud
   ```
 
-- Build Geniux release `thud`, with manifest date `22.02`, for machines
+- Build Geniux release `thud`, with manifest date `24.02`, for machines
   `zedboard-zynq7` and `raspberrypi3`:
 
   ```
-  $ ./geniux-builder.sh thud 22.02
+  $ ./geniux-builder.sh thud 24.02
   ```
 
 - Build Geniux release `warrior`, with manifest date `latest`, only for machine
@@ -129,11 +129,11 @@ Examples of usage:
   $ ./geniux-builder.sh warrior latest zedboard-zynq7
   ```
 
-- Build Geniux release `warrior`, with manifest date `22.02`, only for machine
+- Build Geniux release `warrior`, with manifest date `24.02`, only for machine
   `raspberrypi3`:
 
   ```
-  $ ./geniux-builder.sh warrior 22.02 raspberrypi3
+  $ ./geniux-builder.sh warrior 24.02 raspberrypi3
   ```
 
 - Build Geniux release `rocko`, with manifest date `latest`, for machines
@@ -314,6 +314,7 @@ shows that correspondence between versions:
 
 | Xilinx release | Yocto codename | Linux kernel | Geniux version | Geniux manifest                          | Tested boards (`MACHINE`)                                         |
 | :------------: | :------------: | :----------: | :------------: | ---------------------------------------- | ----------------------------------------------------------------- |
+|    v2023.2     |    Langdale    |     6.1      |    Langdale    | `latest`, `24.02`.                       | `zcu102-zynqmp`, `zcu208-zynqmp`                                  |
 |    v2022.2     |    Honister    |     5.15     |    Honister    | `latest`, `23.04`, `22.06`.              | `zedboard-zynq7`, `zc706-zynq7`, `zcu102-zynqmp`, `zcu208-zynqmp` |
 |    v2021.2     |   Gatesgarth   |     5.10     |   Gatesgarth   | `latest`, `23.04`, `22.06`.              | `zedboard-zynq7`, `zc706-zynq7`, `zcu102-zynqmp`                  |
 |    v2020.3     |      Zeus      |     5.4      |      Zeus      | `latest`, `23.04`, `22.06`, `22.02`, ... | `zedboard-zynq7`, `zcu102-zynqmp`                                 |
@@ -331,7 +332,7 @@ Foundation. This tool is not, in any way, endorsed by the Yocto Project or
 
 ## Copyright and License
 
-Copyright: &copy; 2020-2023 Carles Fern&aacute;ndez-Prades,
+Copyright: &copy; 2020-2024 Carles Fern&aacute;ndez-Prades,
 [CTTC](https://www.cttc.cat). All rights reserved.
 
 The content of this repository is released under the [MIT](./LICENSE) license.
