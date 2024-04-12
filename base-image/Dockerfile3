@@ -1,0 +1,101 @@
+# SPDX-FileCopyrightText: 2023, Carles Fernandez-Prades <carles.fernandez@cttc.es>
+# SPDX-License-Identifier: MIT
+#
+# Yocto Geniux base image to help building Geniux.
+
+FROM ubuntu:22.04
+LABEL version="3.0" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
+
+
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
+    apt \
+    apt-transport-https \
+    autoconf \
+    automake \
+    build-essential \
+    bison \
+    ca-certificates \
+    chrpath \
+    cpio \
+    curl \
+    debianutils \
+    diffstat \
+    file \
+    flex \
+    gawk \
+    gcc \
+    git \
+    git-lfs \
+    gnupg \
+    gzip \
+    iproute2 \
+    iputils-ping \
+    libacl1 \
+    libegl1-mesa \
+    liblz4-tool \
+    libncurses5-dev \
+    libselinux1 \
+    libssl-dev \
+    libsdl1.2-dev \
+    libtool \
+    locales \
+    mesa-common-dev \
+    net-tools \
+    passwd \
+    pax \
+    pylint \
+    python3 \
+    python3-git \
+    python3-jinja2 \
+    python3-pexpect \
+    python3-pip \
+    python3-subunit \
+    screen \
+    socat \
+    sudo \
+    tftpd \
+    tar \
+    texinfo \
+    unzip \
+    wget \
+    whois \
+    xterm \
+    xxd \
+    xz-utils \
+    zlib1g-dev \
+    zstd \
+    nano \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install docker and upgrade packages
+RUN  apt-get update && install -m 0755 -d /etc/apt/keyrings && \
+     curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc && \
+     chmod a+r /etc/apt/keyrings/docker.asc && \
+     echo \
+     "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+     $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+     tee /etc/apt/sources.list.d/docker.list > /dev/null && \
+     apt-get update && \
+     apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin && \
+     DEBIAN_FRONTEND=noninteractive apt-get -y upgrade && \
+     apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Build and install Python 3.11, required by repo
+RUN wget https://www.python.org/ftp/python/3.11.4/Python-3.11.4.tgz \
+    && tar -xf Python-3.11.*.tgz && cd Python-3.11.*/ \
+    && ./configure --enable-optimizations && make && make altinstall \
+    && cd .. && rm Python-3.11.*.tgz && rm -rf Python-3.11.*/
+
+# By default, Ubuntu uses dash as an alias for sh. Dash does not support the
+# source command needed for setting up Yocto build environments. Use bash as an
+# alias for sh.
+RUN which dash &> /dev/null && (\
+    echo "dash dash/sh boolean false" | debconf-set-selections && \
+    DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash) || \
+    echo "Skipping dash reconfigure (not applicable)"
+
+# Set the locale to en_US.UTF-8, because the Yocto build fails without any locale set.
+RUN locale-gen en_US.UTF-8 && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
+

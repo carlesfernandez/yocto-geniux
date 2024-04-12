@@ -9,8 +9,8 @@ display_usage() {
     echo -e "\nUsage:\n./geniux-builder.sh [version] [manifest] [machine] (--image-only / -i)\n"
     echo -e "Options:"
     echo -e " version   Geniux version (from oldest to most recent):"
-    echo -e "             rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth,"
-    echo -e "             hardknott, honister, kirkstone, langdale, mickledore, nanbield. Default: dunfell"
+    echo -e "             rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott,"
+    echo -e "             honister, kirkstone, langdale, mickledore, nanbield, scarthgap. Default: dunfell"
     echo -e "           Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr"
     echo -e " manifest  Geniux version manifest: 21.02, 21.08, 22.02, 22.06, 23.04, 24.02, latest. Default: latest"
     echo -e "           Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags"
@@ -37,8 +37,11 @@ if [[ $GENIUX_VERSION == "rocko" || $GENIUX_VERSION == "sumo" || $GENIUX_VERSION
     $GENIUX_VERSION == "kirkstone"  || $GENIUX_VERSION == "langdale" ]]
     then
         YOCTO_GENIUX_BASE_IMAGE_VERSION="1.7"
+    elif [[ $GENIUX_VERSION == "mickledore" ]]
+        then
+            YOCTO_GENIUX_BASE_IMAGE_VERSION="2.1"
     else
-        YOCTO_GENIUX_BASE_IMAGE_VERSION="2.1"
+        YOCTO_GENIUX_BASE_IMAGE_VERSION="3.0"
 fi
 
 YOCTO_GENIUX_BASE_IMAGE="yocto-geniux-base:v$YOCTO_GENIUX_BASE_IMAGE_VERSION"
@@ -145,8 +148,11 @@ if test -z "$(docker images -q $YOCTO_GENIUX_BASE_IMAGE)"
             $GENIUX_VERSION == "kirkstone"  || $GENIUX_VERSION == "langdale" ]]
             then
                 docker build --tag "$YOCTO_GENIUX_BASE_IMAGE" .
+            elif [[ $GENIUX_VERSION == "mickledore" ]]
+                then
+                    docker build -f Dockerfile2 --tag "$YOCTO_GENIUX_BASE_IMAGE" .
             else
-                docker build -f Dockerfile2 --tag "$YOCTO_GENIUX_BASE_IMAGE" .
+                docker build -f Dockerfile3 --tag "$YOCTO_GENIUX_BASE_IMAGE" .
         fi
         cd ..
 fi
