@@ -4,7 +4,7 @@
 # Yocto Geniux base image to help building Geniux.
 
 FROM ubuntu:22.04
-LABEL version="3.0" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
+LABEL version="3.1" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
 
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
@@ -12,6 +12,10 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
     apt-transport-https \
     autoconf \
     automake \
+    base-files \
+    bash \
+    bc \
+    bsdutils \
     build-essential \
     bison \
     ca-certificates \
@@ -20,6 +24,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
     curl \
     debianutils \
     diffstat \
+    distro-info-data \
+    fdisk \
     file \
     flex \
     gawk \
@@ -31,18 +37,28 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
     iproute2 \
     iputils-ping \
     libacl1 \
+    libbz2-dev \
     libegl1-mesa \
+    libffi-dev \
+    libgdbm-dev \
+    liblzma5 \
     liblz4-tool \
     libncurses5-dev \
+    libreadline-dev \
     libselinux1 \
     libssl-dev \
     libsdl1.2-dev \
+    libtinfo5 \
     libtool \
     locales \
+    login \
     mesa-common-dev \
+    mount \
+    nano \
     net-tools \
     passwd \
     pax \
+    pwgen \
     pylint \
     python3 \
     python3-git \
@@ -56,7 +72,9 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
     tftpd \
     tar \
     texinfo \
+    ubuntu-keyring \
     unzip \
+    util-linux \
     wget \
     whois \
     xterm \
@@ -64,7 +82,6 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
     xz-utils \
     zlib1g-dev \
     zstd \
-    nano \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install docker and upgrade packages
@@ -81,7 +98,7 @@ RUN  apt-get update && install -m 0755 -d /etc/apt/keyrings && \
      apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Build and install Python 3.11, required by repo
-RUN wget https://www.python.org/ftp/python/3.11.4/Python-3.11.4.tgz \
+RUN wget https://www.python.org/ftp/python/3.11.9/Python-3.11.9.tgz \
     && tar -xf Python-3.11.*.tgz && cd Python-3.11.*/ \
     && ./configure --enable-optimizations && make && make altinstall \
     && cd .. && rm Python-3.11.*.tgz && rm -rf Python-3.11.*/
