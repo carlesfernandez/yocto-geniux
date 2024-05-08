@@ -175,7 +175,7 @@ Examples of usage:
   `raspberrypi5`:
 
   ```
-  $ ./geniux-builder.sh langdale latest raspberrypi5
+  $ ./geniux-builder.sh scarthgap latest raspberrypi5
   ```
 
 At the end of the building process, the output products will be placed in a
