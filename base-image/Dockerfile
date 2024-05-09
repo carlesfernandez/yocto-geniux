@@ -4,13 +4,14 @@
 # Yocto Geniux base image to help building Geniux.
 
 FROM ubuntu:18.04
-LABEL version="1.7" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
+LABEL version="1.8" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
 
 # Install all Linux packages required for Yocto builds, plus other packages used
 # in this file below, and in the interactive mode
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
   apt \
   apt-transport-https \
+  atop \
   base-files \
   bash \
   bc \
@@ -79,6 +80,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
   ubuntu-keyring \
   unzip \
   util-linux \
+  vim \
   wget \
   whois \
   xterm \

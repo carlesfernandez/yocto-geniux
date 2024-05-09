@@ -36,12 +36,12 @@ if [[ $GENIUX_VERSION == "rocko" || $GENIUX_VERSION == "sumo" || $GENIUX_VERSION
     $GENIUX_VERSION == "gatesgarth" || $GENIUX_VERSION == "hardknott" || $GENIUX_VERSION == "honister" || \
     $GENIUX_VERSION == "kirkstone"  || $GENIUX_VERSION == "langdale" ]]
     then
-        YOCTO_GENIUX_BASE_IMAGE_VERSION="1.7"
+        YOCTO_GENIUX_BASE_IMAGE_VERSION="1.8"
     elif [[ $GENIUX_VERSION == "mickledore" ]]
         then
-            YOCTO_GENIUX_BASE_IMAGE_VERSION="2.1"
+            YOCTO_GENIUX_BASE_IMAGE_VERSION="2.2"
     else
-        YOCTO_GENIUX_BASE_IMAGE_VERSION="3.1"
+        YOCTO_GENIUX_BASE_IMAGE_VERSION="3.2"
 fi
 
 YOCTO_GENIUX_BASE_IMAGE="yocto-geniux-base:v$YOCTO_GENIUX_BASE_IMAGE_VERSION"

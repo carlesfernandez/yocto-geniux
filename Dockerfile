@@ -3,7 +3,7 @@
 #
 # Docker image to build Geniux images.
 
-ARG base_image_version=1.7
+ARG base_image_version=1.8
 FROM yocto-geniux-base:v${base_image_version}
 LABEL version="3.2" description="Geniux builder" maintainer="carles.fernandez@cttc.es"
 

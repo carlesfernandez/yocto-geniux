@@ -4,12 +4,13 @@
 # Yocto Geniux base image to help building Geniux.
 
 FROM ubuntu:22.04
-LABEL version="3.1" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
+LABEL version="3.2" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
 
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
     apt \
     apt-transport-https \
+    atop \
     autoconf \
     automake \
     base-files \
@@ -75,6 +76,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
     ubuntu-keyring \
     unzip \
     util-linux \
+    vim \
     wget \
     whois \
     xterm \
