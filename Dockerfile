@@ -15,11 +15,11 @@ ARG host_gid=1001
 ARG BUILD_NEW_TEMPLATE
 
 # Set up a local mirror
-ENV LOCAL_MIRROR /source_mirror/sources/$version
+ENV LOCAL_MIRROR=/source_mirror/sources/$version
 RUN mkdir -p $LOCAL_MIRROR
 
 # Add user "geniux" to sudoers. Then, the user can install Linux packages in the container.
-ENV USER_NAME geniux
+ENV USER_NAME=geniux
 RUN echo "${USER_NAME} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/${USER_NAME} && \
   chmod 0440 /etc/sudoers.d/${USER_NAME}
 
@@ -46,8 +46,8 @@ RUN sed -i -r 's/ulimit \-Hn/ulimit \-n/g' /etc/init.d/docker
 # By default, docker runs as root. However, Yocto builds should not be run as
 # root, but as a normal user. Hence, we switch to the newly created user geniux.
 USER $USER_NAME
-ENV BUILD_INPUT_DIR /home/$USER_NAME/yocto/input
-ENV BUILD_OUTPUT_DIR /home/$USER_NAME/yocto/output
+ENV BUILD_INPUT_DIR=/home/$USER_NAME/yocto/input
+ENV BUILD_OUTPUT_DIR=/home/$USER_NAME/yocto/output
 RUN mkdir -p $BUILD_INPUT_DIR $BUILD_OUTPUT_DIR
 
 RUN sudo usermod -aG docker $USER_NAME && newgrp docker
