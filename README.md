@@ -4,7 +4,7 @@ SPDX-License-Identifier: MIT
 )
 
 [comment]: # (
-SPDX-FileCopyrightText: 2020-2024 Carles Fernandez-Prades <carles.fernandez@cttc.es>
+SPDX-FileCopyrightText: 2020-2025 Carles Fernandez-Prades <carles.fernandez@cttc.es>
 )
 <!-- prettier-ignore-end -->
 
@@ -69,7 +69,7 @@ Usage:
 Options:
  version   Geniux version (from oldest to most recent):
              rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott,
-             honister, kirkstone, langdale, mickledore, nanbield, scarthgap. Default: dunfell
+             honister, kirkstone, langdale, mickledore, nanbield, scarthgap, styhead. Default: dunfell
            Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr
  manifest  Geniux version manifest: 21.02, 21.08, 22.02, 22.06, 23.04, 24.02, latest. Default: latest
            Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags
@@ -179,6 +179,13 @@ Examples of usage:
 
   ```
   $ ./geniux-builder.sh scarthgap latest raspberrypi5
+  ```
+
+- Build Geniux release `styhead`, with manifest date `latest`, only for
+  machine `raspberrypi5`:
+
+  ```
+  $ ./geniux-builder.sh styhead latest raspberrypi5
   ```
 
 At the end of the building process, the output products will be placed in a
@@ -362,7 +369,7 @@ Foundation. This tool is not, in any way, endorsed by the Yocto Project or
 
 ## Copyright and License
 
-Copyright: &copy; 2020-2024 Carles Fern&aacute;ndez-Prades,
+Copyright: &copy; 2020-2025 Carles Fern&aacute;ndez-Prades,
 [CTTC](https://www.cttc.cat). All rights reserved.
 
 The content of this repository is released under the [MIT](./LICENSE) license.

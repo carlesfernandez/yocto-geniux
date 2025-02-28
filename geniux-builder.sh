@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # A script to build and store Geniux releases
-# SPDX-FileCopyrightText: 2020-2024, Carles Fernandez-Prades <carles.fernandez@cttc.es>
+# SPDX-FileCopyrightText: 2020-2025, Carles Fernandez-Prades <carles.fernandez@cttc.es>
 # SPDX-License-Identifier: MIT
 
 display_usage() {
@@ -10,7 +10,7 @@ display_usage() {
     echo -e "Options:"
     echo -e " version   Geniux version (from oldest to most recent):"
     echo -e "             rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott,"
-    echo -e "             honister, kirkstone, langdale, mickledore, nanbield, scarthgap. Default: dunfell"
+    echo -e "             honister, kirkstone, langdale, mickledore, nanbield, scarthgap, styhead. Default: dunfell"
     echo -e "           Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr"
     echo -e " manifest  Geniux version manifest: 21.02, 21.08, 22.02, 22.06, 23.04, 24.02, latest. Default: latest"
     echo -e "           Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags"
