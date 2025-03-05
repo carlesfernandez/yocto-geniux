@@ -79,11 +79,16 @@ CMD if [ "$host_git" = "1001" ]; then \
   bitbake -c populate_sdk gnss-sdr-dev-image && \
   bitbake gnss-sdr-demo-image && \
   bitbake gnss-sdr-dev-docker && \
-  sudo mv ./tmp-glibc/deploy/images /home/geniux/yocto/output/ && \
   rm ./downloads/*.done && \
   rm -rf ./downloads/git2 && \
   sudo mv ./downloads /home/geniux/yocto/output/ && \
+  if [ "$version" = "rocko" ] || [ "$version" = "sumo" ] || [ "$version" = "thud" ] || [ "$version" = "warrior" ] || [ "$version" = "zeus" ] || [ "$version" = "dunfell" ] || [ "$version" = "gatesgarth" ] || [ "$version" = "hardknott" ] || [ "$version" = "honister" ] || [ "$version" = "kirkstone" ] || [ "$version" = "langdale" ] || [ "$version" = "mickledore" ] || [ "$version" = "nanbield" ] || [ "$version" = "scarthgap" ]; then \
+  sudo mv ./tmp-glibc/deploy/images /home/geniux/yocto/output/ && \
   sudo mv ./tmp-glibc/deploy/sdk /home/geniux/yocto/output/ ; \
+  else \
+  sudo mv ./tmp/deploy/images /home/geniux/yocto/output/ && \
+  sudo mv ./tmp/deploy/sdk /home/geniux/yocto/output/ ; \
+  fi \
   else \
   source ./oe-core/oe-init-build-env ./build ./bitbake && \
   echo "" | sudo -S service docker start && \
@@ -91,9 +96,15 @@ CMD if [ "$host_git" = "1001" ]; then \
   bitbake -c populate_sdk gnss-sdr-dev-image && \
   bitbake gnss-sdr-demo-image && \
   bitbake gnss-sdr-dev-docker && \
-  echo "" | sudo -S mv ./tmp-glibc/deploy/images /home/geniux/yocto/output/ && \
   rm ./downloads/*.done && \
   rm -rf ./downloads/git2 && \
-  sudo mv ./downloads /home/geniux/yocto/output/ && \
-  sudo mv ./tmp-glibc/deploy/sdk /home/geniux/yocto/output/ ; \
+  if [ "$version" = "rocko" ] || [ "$version" = "sumo" ] || [ "$version" = "thud" ] || [ "$version" = "warrior" ] || [ "$version" = "zeus" ] || [ "$version" = "dunfell" ] || [ "$version" = "gatesgarth" ] || [ "$version" = "hardknott" ] || [ "$version" = "honister" ] || [ "$version" = "kirkstone" ] || [ "$version" = "langdale" ] || [ "$version" = "mickledore" ] || [ "$version" = "nanbield" ] || [ "$version" = "scarthgap" ]; then \
+  echo "" | sudo -S mv ./tmp-glibc/deploy/images /home/geniux/yocto/output/ && \
+  sudo mv ./tmp-glibc/deploy/sdk /home/geniux/yocto/output/ && \
+  sudo mv ./downloads /home/geniux/yocto/output/ ; \
+  else \
+  echo "" | sudo -S mv ./tmp/deploy/images /home/geniux/yocto/output/ && \
+  sudo mv ./tmp/deploy/sdk /home/geniux/yocto/output/ && \
+  sudo mv ./downloads /home/geniux/yocto/output/ ; \
+  fi \
   fi
