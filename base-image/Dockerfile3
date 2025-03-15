@@ -1,13 +1,12 @@
-# SPDX-FileCopyrightText: 2023, Carles Fernandez-Prades <carles.fernandez@cttc.es>
+# SPDX-FileCopyrightText: 2023-2025, Carles Fernandez-Prades <carles.fernandez@cttc.es>
 # SPDX-License-Identifier: MIT
 #
 # Yocto Geniux base image to help building Geniux.
 
 FROM ubuntu:22.04
-LABEL version="3.3" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
+LABEL version="3.4" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
 
-
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y \
     apt \
     apt-transport-https \
     atop \
@@ -85,20 +84,20 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
     xz-utils \
     zlib1g-dev \
     zstd \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    && apt clean && rm -rf /var/lib/apt/lists/*
 
 # Install docker and upgrade packages
-RUN  apt-get update && install -m 0755 -d /etc/apt/keyrings && \
+RUN  apt update && install -m 0755 -d /etc/apt/keyrings && \
      curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc && \
      chmod a+r /etc/apt/keyrings/docker.asc && \
      echo \
      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
      $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
      tee /etc/apt/sources.list.d/docker.list > /dev/null && \
-     apt-get update && \
-     apt-get -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin && \
-     DEBIAN_FRONTEND=noninteractive apt-get -y upgrade && \
-     apt-get clean && rm -rf /var/lib/apt/lists/*
+     apt update && \
+     DEBIAN_FRONTEND=noninteractive apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin && \
+     DEBIAN_FRONTEND=noninteractive apt upgrade -y && \
+     apt clean && rm -rf /var/lib/apt/lists/*
 
 # Build and install Python 3.11, required by repo
 RUN wget https://www.python.org/ftp/python/3.11.9/Python-3.11.9.tgz \

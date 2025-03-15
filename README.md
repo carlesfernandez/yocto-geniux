@@ -45,7 +45,7 @@ $ sudo usermod -aG docker <username>
 > On Debian/Ubuntu machines, you can install them by doing:
 >
 > ```
-> $ sudo apt-get install zip unzip
+> $ sudo apt install zip unzip
 > ```
 
 Then, get the source code of this repository and go to its base path:

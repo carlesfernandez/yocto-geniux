@@ -1,11 +1,11 @@
-# SPDX-FileCopyrightText: 2020-2023, Carles Fernandez-Prades <carles.fernandez@cttc.es>
+# SPDX-FileCopyrightText: 2020-2025, Carles Fernandez-Prades <carles.fernandez@cttc.es>
 # SPDX-License-Identifier: MIT
 #
 # Docker image to build Geniux images.
 
-ARG base_image_version=1.9
+ARG base_image_version=1.10
 FROM yocto-geniux-base:v${base_image_version}
-LABEL version="3.2" description="Geniux builder" maintainer="carles.fernandez@cttc.es"
+LABEL version="3.3" description="Geniux builder" maintainer="carles.fernandez@cttc.es"
 
 ARG version=dunfell
 ARG manifest_date=latest
@@ -33,7 +33,7 @@ RUN echo "${USER_NAME} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/${USER_NAME} &&
 RUN groupadd -g $host_gid $USER_NAME && useradd -g $host_gid -m -s /bin/bash -u $host_uid $USER_NAME
 
 # Always get latest packages
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y upgrade && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt upgrade -y && apt clean && rm -rf /var/lib/apt/lists/*
 
 # Install the repo tool to handle git submodules (meta layers) comfortably.
 ADD https://storage.googleapis.com/git-repo-downloads/repo /usr/local/bin/

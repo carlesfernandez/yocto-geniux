@@ -1,14 +1,14 @@
-# SPDX-FileCopyrightText: 2022-2023, Carles Fernandez-Prades <carles.fernandez@cttc.es>
+# SPDX-FileCopyrightText: 2022-2025, Carles Fernandez-Prades <carles.fernandez@cttc.es>
 # SPDX-License-Identifier: MIT
 #
 # Yocto Geniux base image to help building Geniux.
 
 FROM ubuntu:18.04
-LABEL version="1.9" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
+LABEL version="1.10" description="Yocto Geniux base image" maintainer="carles.fernandez@cttc.es"
 
 # Install all Linux packages required for Yocto builds, plus other packages used
 # in this file below, and in the interactive mode
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
+RUN apt update && DEBIAN_FRONTEND=noninteractive apt install -y \
   apt \
   apt-transport-https \
   atop \
@@ -90,17 +90,17 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install \
   zlib1g \
   zlib1g-dev \
   zstd \
-  && apt-get clean && rm -rf /var/lib/apt/lists/*
+  && apt clean && rm -rf /var/lib/apt/lists/*
 
 # Install docker and upgrade packages
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1 apt-key add -
 RUN add-apt-repository \
   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) \
-  stable" && apt-get update && DEBIAN_FRONTEND=noninteractive \
-  apt-get -y install docker-ce docker-ce-cli containerd.io \
-  && DEBIAN_FRONTEND=noninteractive apt-get -y upgrade \
-  && apt-get clean && rm -rf /var/lib/apt/lists/*
+  stable" && apt update && DEBIAN_FRONTEND=noninteractive \
+  apt install -y docker-ce docker-ce-cli containerd.io \
+  && DEBIAN_FRONTEND=noninteractive apt -y upgrade \
+  && apt clean && rm -rf /var/lib/apt/lists/*
 
 # Build and install Python 3.11, required by repo
 RUN wget https://www.python.org/ftp/python/3.11.4/Python-3.11.4.tgz \
