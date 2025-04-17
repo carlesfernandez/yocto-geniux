@@ -5,11 +5,11 @@
 
 ARG base_image_version=1.10
 FROM yocto-geniux-base:v${base_image_version}
-LABEL version="3.3" description="Geniux builder" maintainer="carles.fernandez@cttc.es"
+LABEL version="3.4" description="Geniux builder" maintainer="carles.fernandez@cttc.es"
 
-ARG version=dunfell
+ARG version=scarthgap
 ARG manifest_date=latest
-ARG MACHINE=zedboard-zynq7
+ARG MACHINE=raspberrypi5
 ARG host_uid=1001
 ARG host_gid=1001
 ARG BUILD_NEW_TEMPLATE

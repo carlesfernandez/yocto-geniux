@@ -9,8 +9,8 @@ display_usage() {
     echo -e "\nUsage:\n./geniux-builder.sh [version] [manifest] [machine] (--image-only / -i)\n"
     echo -e "Options:"
     echo -e " version   Geniux version (from oldest to most recent):"
-    echo -e "             rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott,"
-    echo -e "             honister, kirkstone, langdale, mickledore, nanbield, scarthgap, styhead. Default: dunfell"
+    echo -e "             rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott, honister,"
+    echo -e "             kirkstone, langdale, mickledore, nanbield, scarthgap, styhead, walnascar. Default: scarthgap"
     echo -e "           Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr"
     echo -e " manifest  Geniux version manifest: 21.02, 21.08, 22.02, 22.06, 23.04, 24.02, latest. Default: latest"
     echo -e "           Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags"
@@ -28,11 +28,11 @@ display_usage() {
     echo -e "                             e.g.: 'export GENIUX_STORE_REQUIRES_SUDO=1'"
 }
 
-GENIUX_VERSION=${1:-dunfell}
+GENIUX_VERSION=${1:-scarthgap}
 GENIUX_MANIFEST_DATE=${2:-latest}
 
 if [[ $GENIUX_VERSION == "rocko" || $GENIUX_VERSION == "sumo" || $GENIUX_VERSION == "thud" || \
-    $GENIUX_VERSION == "warrior" || $GENIUX_VERSION == "zeus" || $GENIUX_VERSION == "dunfell" || \
+    $GENIUX_VERSION == "warrior" || $GENIUX_VERSION == "zeus" || $GENIUX_VERSION == "raspberry" || \
     $GENIUX_VERSION == "gatesgarth" || $GENIUX_VERSION == "hardknott" || $GENIUX_VERSION == "honister" || \
     $GENIUX_VERSION == "kirkstone"  || $GENIUX_VERSION == "langdale" ]]
     then
@@ -115,7 +115,7 @@ if [ "$STORE_PATH" ]
         STORE_REQUIRES_SUDO=$GENIUX_STORE_REQUIRES_SUDO
 fi
 
-ListOfMachines="zedboard-zynq7 raspberrypi3"
+ListOfMachines="zcu102-zynqmp raspberrypi5"
 if [ $# -gt 2 ]
     then
         ListOfMachines="$3"

@@ -68,12 +68,12 @@ Usage:
 
 Options:
  version   Geniux version (from oldest to most recent):
-             rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott,
-             honister, kirkstone, langdale, mickledore, nanbield, scarthgap, styhead. Default: dunfell
+             rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott, honister,
+             kirkstone, langdale, mickledore, nanbield, scarthgap, styhead, walnascar. Default: scarthgap
            Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr
  manifest  Geniux version manifest: 21.02, 21.08, 22.02, 22.06, 23.04, 24.02, latest. Default: latest
            Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags
- machine   Specify your (list of) MACHINE here. By default, zedboard-zynq7 and raspberrypi3 are built.
+ machine   Specify your (list of) MACHINE here. By default, zcu102-zynqmp and raspberrypi5 are built.
            If more than one, surround them with quotes, e.g.: "raspberrypi4-64 intel-corei7-64"
 
  --image-only / -i  (optional) Build the Docker image but do not execute the container.
@@ -104,18 +104,25 @@ Examples of usage:
 > run `screen` ot `tmux` at this point, so the work won't be lost in case of a
 > session drop.
 
-- Build Geniux release `dunfell`, with manifest date `latest`, for machines
-  `zedboard-zynq7` and `raspberrypi3`:
+- Build Geniux release `scarthgap`, with manifest date `latest`, for machines
+  `zcu102-zynqmp` and `raspberrypi5`:
 
   ```
   $ ./geniux-builder.sh
+  ```
+
+- Build Geniux release `rocko`, with manifest date `latest`, for machines
+  `zedboard-zynq7` and `zcu102-zynqmp`:
+
+  ```
+  $ ./geniux-builder.sh rocko latest "zedboard-zynq7 zcu102-zynqmp"
   ```
 
 - Build Geniux release `thud`, with manifest date `latest`, for machines
   `zedboard-zynq7` and `raspberrypi3`:
 
   ```
-  $ ./geniux-builder.sh thud
+  $ ./geniux-builder.sh thud "zedboard-zynq7 raspberrypi3"
   ```
 
 - Build Geniux release `thud`, with manifest date `24.02`, for machines
@@ -137,13 +144,6 @@ Examples of usage:
 
   ```
   $ ./geniux-builder.sh warrior 24.02 raspberrypi3
-  ```
-
-- Build Geniux release `rocko`, with manifest date `latest`, for machines
-  `zedboard-zynq7` and `zcu102-zynqmp`:
-
-  ```
-  $ ./geniux-builder.sh rocko latest "zedboard-zynq7 zcu102-zynqmp"
   ```
 
 - Build Geniux release `hardknott`, with manifest date `latest`, for machines
@@ -186,6 +186,13 @@ Examples of usage:
 
   ```
   $ ./geniux-builder.sh styhead latest raspberrypi5
+  ```
+
+- Build Geniux release `walnascar`, with manifest date `latest`, only for
+  machine `raspberrypi5`:
+
+  ```
+  $ ./geniux-builder.sh walnascar latest raspberrypi5
   ```
 
 At the end of the building process, the output products will be placed in a
