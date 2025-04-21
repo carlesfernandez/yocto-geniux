@@ -71,7 +71,7 @@ Options:
              rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott, honister,
              kirkstone, langdale, mickledore, nanbield, scarthgap, styhead, walnascar. Default: scarthgap
            Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr
- manifest  Geniux version manifest: 21.02, 21.08, 22.02, 22.06, 23.04, 24.02, latest. Default: latest
+ manifest  Geniux version manifest: 21.02, 21.08, 22.02, 22.06, 23.04, 24.02, 25.04, latest. Default: latest
            Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags
  machine   Specify your (list of) MACHINE here. By default, zcu102-zynqmp and raspberrypi5 are built.
            If more than one, surround them with quotes, e.g.: "raspberrypi4-64 intel-corei7-64"
@@ -125,11 +125,11 @@ Examples of usage:
   $ ./geniux-builder.sh thud "zedboard-zynq7 raspberrypi3"
   ```
 
-- Build Geniux release `thud`, with manifest date `24.02`, for machines
+- Build Geniux release `thud`, with manifest date `25.04`, for machines
   `zedboard-zynq7` and `raspberrypi3`:
 
   ```
-  $ ./geniux-builder.sh thud 24.02
+  $ ./geniux-builder.sh thud 25.04
   ```
 
 - Build Geniux release `warrior`, with manifest date `latest`, only for machine
@@ -139,11 +139,11 @@ Examples of usage:
   $ ./geniux-builder.sh warrior latest zedboard-zynq7
   ```
 
-- Build Geniux release `warrior`, with manifest date `24.02`, only for machine
+- Build Geniux release `warrior`, with manifest date `25.04`, only for machine
   `raspberrypi3`:
 
   ```
-  $ ./geniux-builder.sh warrior 24.02 raspberrypi3
+  $ ./geniux-builder.sh warrior 25.04 raspberrypi3
   ```
 
 - Build Geniux release `hardknott`, with manifest date `latest`, for machines
@@ -181,8 +181,8 @@ Examples of usage:
   $ ./geniux-builder.sh scarthgap latest raspberrypi5
   ```
 
-- Build Geniux release `styhead`, with manifest date `latest`, only for
-  machine `raspberrypi5`:
+- Build Geniux release `styhead`, with manifest date `latest`, only for machine
+  `raspberrypi5`:
 
   ```
   $ ./geniux-builder.sh styhead latest raspberrypi5
@@ -358,12 +358,12 @@ shows that correspondence between versions:
 
 | Xilinx release | Yocto codename | Linux kernel | Geniux version | Geniux manifest                                   | Tested boards (`MACHINE`)                                         |
 | :------------: | :------------: | :----------: | :------------: | ------------------------------------------------- | ----------------------------------------------------------------- |
-|    v2023.2     |    Langdale    |     6.1      |    Langdale    | `latest`, `24.02`.                                | `zcu102-zynqmp`, `zcu208-zynqmp`                                  |
-|    v2022.2     |    Honister    |     5.15     |    Honister    | `latest`, `24.02`, `23.04`, `22.06`.              | `zedboard-zynq7`, `zc706-zynq7`, `zcu102-zynqmp`, `zcu208-zynqmp` |
-|    v2021.2     |   Gatesgarth   |     5.10     |   Gatesgarth   | `latest`, `24.02`, `23.04`, `22.06`.              | `zedboard-zynq7`, `zc706-zynq7`, `zcu102-zynqmp`                  |
-|    v2020.3     |      Zeus      |     5.4      |      Zeus      | `latest`, `24.02`, `23.04`, `22.06`, `22.02`, ... | `zedboard-zynq7`, `zcu102-zynqmp`                                 |
-|    v2019.2     |      Thud      |     4.19     |      Thud      | `latest`, `24.02`, `23.04`, `22.06`, `22.02`, ... | `zedboard-zynq7`, `zcu102-zynqmp`                                 |
-|    v2018.3     |     Rocko      |     4.14     |     Rocko      | `latest`, `24.02`, `23.04`, `22.06`, `22.02`, ... | `zedboard-zynq7`, `zcu102-zynqmp`                                 |
+|    v2023.2     |    Langdale    |     6.1      |    Langdale    | `latest`, `25.04`, `24.02`.                       | `zcu102-zynqmp`, `zcu208-zynqmp`                                  |
+|    v2022.2     |    Honister    |     5.15     |    Honister    | `latest`, `25.04`, `24.02`, `23.04`, `22.06`.     | `zedboard-zynq7`, `zc706-zynq7`, `zcu102-zynqmp`, `zcu208-zynqmp` |
+|    v2021.2     |   Gatesgarth   |     5.10     |   Gatesgarth   | `latest`, `25.04`, `24.02`, `23.04`, `22.06`.     | `zedboard-zynq7`, `zc706-zynq7`, `zcu102-zynqmp`                  |
+|    v2020.3     |      Zeus      |     5.4      |      Zeus      | `latest`, `25.04`, `24.02`, `23.04`, `22.06`, ... | `zedboard-zynq7`, `zcu102-zynqmp`                                 |
+|    v2019.2     |      Thud      |     4.19     |      Thud      | `latest`, `25.04`, `24.02`, `23.04`, `22.06`, ... | `zedboard-zynq7`, `zcu102-zynqmp`                                 |
+|    v2018.3     |     Rocko      |     4.14     |     Rocko      | `latest`, `25.04`, `24.02`, `23.04`, `22.06`, ... | `zedboard-zynq7`, `zcu102-zynqmp`                                 |
 
 Other boards might work as well, or require minor (but maybe non-obvious)
 modifications in the configuration files.
@@ -383,7 +383,8 @@ The content of this repository is released under the [MIT](./LICENSE) license.
 
 ## Acknowledgements
 
-This work was partially supported by Grant PID2021-128373OB-I00 funded by
+This work was partially supported by CPP2021-008648/ AEI/10.13039/501100011033/
+European Union NextGenerationEU/PRTR and Grant PID2021-128373OB-I00 funded by
 MCIN/AEI/10.13039/501100011033. Formerly, it was also supported by the Spanish
 Ministry of Science, Innovation, and Universities through the Statistical
 Learning and Inference for Large Dimensional Communication Systems (ARISTIDES,
