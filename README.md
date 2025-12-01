@@ -68,8 +68,8 @@ Usage:
 
 Options:
  version   Geniux version (from oldest to most recent):
-             rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott, honister,
-             kirkstone, langdale, mickledore, nanbield, scarthgap, styhead, walnascar. Default: scarthgap
+             rocko, sumo, thud, warrior, zeus, dunfell, gatesgarth, hardknott, honister, kirkstone,
+             langdale, mickledore, nanbield, scarthgap, styhead, walnascar, whinlatter. Default: scarthgap
            Check available branches at https://github.com/carlesfernandez/meta-gnss-sdr
  manifest  Geniux version manifest: 21.02, 21.08, 22.02, 22.06, 23.04, 24.02, 25.04, latest. Default: latest
            Dated manifests available at https://github.com/carlesfernandez/oe-gnss-sdr-manifest/tags
@@ -193,6 +193,13 @@ Examples of usage:
 
   ```
   $ ./geniux-builder.sh walnascar latest raspberrypi5
+  ```
+
+ - Build Geniux release `whinlatter`, with manifest date `latest`,  for machines
+  `raspberrypi5` and `orangepi-rv2`:
+
+  ```
+  $ ./geniux-builder.sh whinlatter latest "raspberrypi5 orangepi-rv2"
   ```
 
 At the end of the building process, the output products will be placed in a
